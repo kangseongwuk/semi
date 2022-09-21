@@ -151,7 +151,7 @@ button {
 		<div class="shape"></div>
 		<div class="shape"></div>
 	</div>
-	<form>
+	<form action="LoginPro.jsp" method="post">
 		<h3>로그인</h3>
 
 		<label for="username">아이디</label> <input type="text" placeholder="id" name="id"> 

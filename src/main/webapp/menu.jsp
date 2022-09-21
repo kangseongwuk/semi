@@ -10,9 +10,9 @@
 <title>menu.jsp</title>
 </head>
 <body>
-	<header class="header" role="banner" id="menu">
+	<nav class="header" role="banner" id="menu" style="margin-top:12	0px">
 		<h1 class="logo">
-			<a href="#">1'm <span>movie</span></a><br>
+			<a href="main.jsp?center=body.jsp">1'm <span>movie</span></a><br>
 		</h1>
 		<div class="nav-wrap">
 			<nav class="main-nav" role="navigation">
@@ -20,7 +20,7 @@
 					<li><a href="#">추천</a></li>
 					<li><a href="#">장르별</a></li>
 					<li><a href="#">찜목록</a></li>
-					<li><a href="#">고객센터</a></li>
+					<li><a href="main.jsp?center=boardList.jsp">고객센터</a></li>
 				</ul>
 			</nav>
 			<div class="overlay"></div>
@@ -31,6 +31,6 @@
 				<li><a href="#">CodePen</a></li>
 			</ul>
 		</div>
-	</header>
+	</nav>
 </body>
 </html>

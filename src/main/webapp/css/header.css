@@ -1,0 +1,29 @@
+header {
+  position: fixed; /* 위치 고정 */
+  top: 0;
+  left: 0;
+  right: 0;
+  
+  height: 75px;
+  padding: 1rem;
+  color: white;
+  background: rgb(109, 109, 109);
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between; /* 가로축-중심축 -> 요소들 사이 동일 간격 */
+  align-items: center; /* 세로축 기준 정렬 */
+}
+
+h1, p {
+  margin: 0;
+}
+
+
+
+body, html {
+  height: 200%;
+}
+
+* {
+  box-sizing: border-box; /* 테두리 기준으로 크기 정함 */
+}

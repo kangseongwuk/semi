@@ -54,42 +54,42 @@ $(document).ready(function(){
     img {
     	border-radius: 7px;
     }
+    #center{
+    	position: absolute;
+    	top: 70%;
+    	left: 70%;
+    	
+    }
+    footer { <!-- footer 부분 위치 고정 -->
+		position: fixed;
+		footer: 0;
+		left: 500px;
+		right: 0;
+		top: 80%;
+		width: 100%;
+		text-align: center;
+		font-weight: var(- -weight-bold);
+		color: var(- -color-white);
+		color:white;
+		}
 </style>
 </head>
 <body>
-<p align="left" style="margin-left:300px;">
-	<img src="./images/menu_icon.png" id="m" alt="메뉴줄이기" width="30" height="30">
-</p>
-	<p align="right" id="upp">
-		<a href="sessionLogin.jsp">
-		<img alt="logo" src="./images/procutcut.png"  height="35px" width="35px"></a>&nbsp;&nbsp;로그인&nbsp;&nbsp;
-	</p>
-	<p align="right" id="upp">
-		<a href="join.jsp">
-		<img alt="logo" src="./images/procutcut.png"  height="35px" width="35px"></a>&nbsp;&nbsp;회원가입&nbsp;&nbsp;
-	</p>
+<%
+	String center = request.getParameter("center");
 
-	<div class="wrap">
-        <div class="box1"><img src="./images/다크나이트.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box2"><img src="./images/더 문.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box3"><img src="./images/블랙폰.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box4"><img src="./images/애프터.png" height="350px" width="280px"></div>
-    </div>
-	<div class="wrap">
-        <div class="box1"><img src="./images/다크나이트.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box2"><img src="./images/더 문.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box3"><img src="./images/블랙폰.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box4"><img src="./images/애프터.png" height="350px" width="280px"></div>
-    </div>
-	<div class="wrap">
-        <div class="box1"><img src="./images/다크나이트.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box2"><img src="./images/더 문.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box3"><img src="./images/블랙폰.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
-        <div class="box4"><img src="./images/애프터.png" height="350px" width="280px"></div>
-    </div>
-
-
-
+	if(center == null){
+		center = "body.jsp";
+	}
+%>
+	<header>
+		<jsp:include page="header.jsp"></jsp:include>
+	</header>
+		<section>
+		  <article>
+			<jsp:include page="<%=center %>"/>
+		  </article>
+		</section>
 <% 
 
 %>
