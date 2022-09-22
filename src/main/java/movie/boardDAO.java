@@ -74,7 +74,7 @@ public class boardDAO {
 
 	}
 
-	//
+	//게시판 전체보기
 	public Vector<boardBean> allselectBoard() {
 
 		getConnection();

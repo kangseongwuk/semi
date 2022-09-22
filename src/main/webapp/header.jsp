@@ -121,7 +121,7 @@
          if(id==null){
             id = "GUEST";
             %>
-             <a href="Login.jsp"> <img alt="logo"
+             <a href="Log/Login.jsp"> <img alt="logo"
                src="./images/procutcut.png" height="35px" width="35px"
                style="align: -1px"></a>&nbsp;&nbsp; <span
                style="vertical-align: center">로 그 인</span>&nbsp;&nbsp; <a

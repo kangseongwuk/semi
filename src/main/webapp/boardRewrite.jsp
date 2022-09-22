@@ -41,9 +41,9 @@ a, a:hover {
 				<td width="120">비밀번호</td>
 				<td class="form-control"><input type="password" name="password" size="90"></td>			
 			</tr>
-			<tr style="height: 50px">
+			<tr style="height: 280px">
 				<td width="100">내용</td>
-				<td colspan="3" class="form-control">
+				<td colspan="3" class="form-control" style="height: 270px">
 					<textarea rows="10" cols="90" name="content"></textarea></td>						
 			</tr>
 			<tr style="height: 50px;">
