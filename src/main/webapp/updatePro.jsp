@@ -10,24 +10,23 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
 %>
 	<jsp:useBean id="pBean" class="movie.peopleBean">
 		<jsp:setProperty name="pBean" property="*"/>
 	</jsp:useBean>
 
 <%
-	request.setCharacterEncoding("UTF-8");
-
 	String id = request.getParameter("id");
-	String pw = request.getParameter("pw");
-	String genre = request.getParameter("genre");
+	String password = request.getParameter("password");
 	
 	peopleDAO pdao = new peopleDAO();
 	String pass = pdao.getPassword(id);
 	
-	if(pass.equals(pw)){
+	if(pass.equals(password)){
 		pdao.updatepeople(pBean);
-		response.sendRedirect("main.jsp?center=peopleList.jsp");
+		
+		response.getWriter().print("<script>alert('정보수정에 성공했습니다.'); location.href = 'main.jsp?center=peopleList.jsp';</script>");
 	}else{
 %>
 	<script type="text/javascript">

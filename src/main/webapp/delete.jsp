@@ -2,34 +2,36 @@
     pageEncoding="UTF-8"%>   
 <%@ page import="movie.peopleDAO" %>  
 <%@ page import="movie.peopleBean" %> 
+
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>회원정보 삭제 화면 구현</title>
 <style>
+@import url("css/bootstrap.css");
 table{
-	margin-top:35%;
-	margin-left:35%;
-	border:2px solid black;
+	margin-top:5%;
 }
-tr{
-	width:90%;
-	border: 3px solid black;
 
-}
+a, a:hover {
+		color:#000000;
+		text-decoration:none;}
 </style>
+<script src="jquery-1.12.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
 </head>
-<body>
+<body style="margin-top: 100px;">
 <h2 align="center">회원정보 삭제 화면</h2>
 	<div align="center"> 
 	<form action="deletePro.jsp" method="post">
-	<table border="1" style="width: 800px; text-align: center;">
-		<tr style="height: 40; background: pink;">
+	<table align="center" class="table table-bordered" border="1" style="width:20%;">
+		<tr style="height: 40;">
 			<td width="100">아이디</td>
 			<td><%=request.getParameter("id") %></td> 
 		</tr>				
-		<tr align="center" style="height: 40; background: yellow;">
+		<tr align="center" style="height: 40;">
 			<td width="120">비밀번호</td>
 			<td>
 				<input type="password" name="pw">

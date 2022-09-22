@@ -18,7 +18,7 @@
 	String textgenre  = "";
 	
 	for(int i=0; i < genre.length; i++){
-		textgenre += genre[i] + " ";
+		textgenre += genre[i] + ", ";
 	}
 	
 %>
@@ -33,12 +33,15 @@
 	//데이터베이스 클래스에 대한 객체 생성
 	peopleDAO pdao = new peopleDAO();	
 	pdao.insertpeople(pBean);
-
+%>
+	<script type="text/javascript">
+		alert("축하합니다! 로그인해주세요.");
+	</script>
+	
+<%	
 	//메인화면으로 이동
-	response.sendRedirect("main.jsp");
-	
-
-	
+	response.getWriter().print("<script>alert('회원가입성공 로그인해주세요.'); location.href = 'main.jsp';</script>");
+	/* response.sendRedirect("main.jsp"); */
 %>	
 
 	

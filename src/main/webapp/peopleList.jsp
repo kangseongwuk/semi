@@ -6,30 +6,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>회원 목록 보기 화면</title>
 <style>
+@import url("css/bootstrap.css");
 table{
-	margin-top:35%;
-	margin-left:35%;
-	border:2px solid black;
+	margin-top:5%;
 }
-tr{
-	width:90%;
-	border: 3px solid black;
 
-}
+a, a:hover {
+		color:#000000;
+		text-decoration:none;}
 </style>
+<script src="jquery-1.12.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
 </head>
-<body>
+<body style="margin-top: 100px;">
 <%
 	peopleDAO pdao = new peopleDAO();
 	
 	Vector<peopleBean> vec = pdao.allselectmember();
 %>
-
-<table align="center">
-	<tr align="center" style="height: 40; background: pink;">
+	<h2 align="center">회원목록</h2>
+<table align="center" class="table table-bordered" border="1" style="width:50%;">
+	<tr align="center" style="height: 40;">
 		<td width="100">아&nbsp;이&nbsp;디</td>
 		<td width="120">이&nbsp;&nbsp;름</td>
 		<td width="120">성&nbsp;&nbsp;별</td>
@@ -53,7 +54,7 @@ tr{
 	<%} %>
 	<tr>
 		<td colspan=5 align="center">
-	 <button onclick="location.href='main.jsp'">main페이지</button>
+	 <button onclick="location.href='main.jsp'" class="btn btn-light">main페이지</button>
 		</td>
 	</tr>
 </table>

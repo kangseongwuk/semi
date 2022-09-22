@@ -55,11 +55,11 @@
    <%
    String id = (String) session.getAttribute("id");
 
-/*    if (id == null) {
+   if (id == null) {
       id = "GUEST";
-      } */
+      }
       %>   
-<!--       <div class="wrapper" >
+      <div class="wrapper" >
     <nav id="sidebar" >
     <div className="sidebar-skeleton"></div>
       <div class="sidebar-header">
@@ -87,7 +87,7 @@
           <a href="#">고객센터</a>
         </li>
       </ul>
-    </nav> -->
+    </nav>
     
    <header>
       <nav class="navbar navbar-expand-lg">
@@ -99,8 +99,9 @@
       </nav>
       
          <!-- 검색바 -->
-       <div class="container">
+         <div class="container">
 
+                    <div class="row height d-flex justify-content-center align-items-center">
 
                       <div class="col-md-8" >
 
@@ -112,55 +113,53 @@
                         
                       </div>
                       
-                </div>   
-         
+                    </div>
+                </div>
+
       <nav>
          <div align="right">
-         
-         <%
-         if(id==null){
-            id = "GUEST";
-            %>
-             <a href="Login.jsp"> <img alt="logo"
+            <a href="sessionLogin.jsp"> <img alt="logo"
                src="./images/procutcut.png" height="35px" width="35px"
                style="align: -1px"></a>&nbsp;&nbsp; <span
                style="vertical-align: center">로 그 인</span>&nbsp;&nbsp; <a
                href="join.jsp"> <img alt="logo" src="./images/procutcut.png"
                height="35px" width="35px"></a>&nbsp;&nbsp;<span>회원가입</span>&nbsp;&nbsp;
-
-         <%
-         }else if(id.equals("admin")){
-            %>
-               <a href="main.jsp?center=peopleList.jsp">관리자모드 접속(회원 목록 보기)</a>
-               <form action="Logout.jsp" method="post">
-              <input type="submit" value="로그아웃">
-              </form>
-         <%
-         }else if(id != null){%>
-            <a href="Login.jsp"> <img alt="logo"
-               src="./images/procutcut.png" height="35px" width="35px"
-               style="align: -1px"></a>&nbsp;&nbsp; <span
-               style="vertical-align: center"><%=id %></span>&nbsp;&nbsp; 
-              <form action="Logout.jsp" method="post">
-              <input type="submit" value="로그아웃">
-              </form>
-         
-         <%} %>
-
          </div>
       </nav>
-   </header>
-
+      </header>
     <div id="content">
-
+      <div class="wrap">
+        <div class="box1"><img src="./images/다크나이트.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box2"><img src="./images/더 문.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box3"><img src="./images/블랙폰.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box4"><img src="./images/애프터.png" height="350px" width="280px"></div>
+    </div>
+   <div class="wrap">
+        <div class="box1"><img src="./images/다크나이트.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box2"><img src="./images/더 문.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box3"><img src="./images/블랙폰.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box4"><img src="./images/애프터.png" height="350px" width="280px"></div>
+    </div>
+   <div class="wrap">
+        <div class="box1"><img src="./images/다크나이트.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box2"><img src="./images/더 문.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box3"><img src="./images/블랙폰.png" height="350px" width="280px"></div>&nbsp;&nbsp;&nbsp;
+        <div class="box4"><img src="./images/애프터.png" height="350px" width="280px"></div>
+    </div>
+      </div>
      
-
+</script>
+      
       
       
       
 <script type="text/javascript"
 src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script></div>
+     
+    </div>
+
+  </div>
   <!-- wrapper and -->
 
 

@@ -3,7 +3,6 @@ package movie;
 public class peopleBean {
 	private String id;
 	private String pw;
-	private String pw1;
 	private String name;
 	private String gender;
 	private String age;
@@ -20,7 +19,6 @@ public class peopleBean {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-	
 	public String getGender() {
 		return gender;
 	}
@@ -38,12 +36,6 @@ public class peopleBean {
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
-	}
-	public String getPw1() {
-		return pw1;
-	}
-	public void setPw1(String pw1) {
-		this.pw1 = pw1;
 	}
 	public String getName() {
 		return name;

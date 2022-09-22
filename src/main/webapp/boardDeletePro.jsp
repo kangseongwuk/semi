@@ -26,7 +26,7 @@
 	if(passwd.equals(bBean.getPassword())){
 		bdao.deleteBoard(b_no);
 		
-		response.sendRedirect("boardList.jsp");
+		response.sendRedirect("main.jsp?center=boardList.jsp");
 	}else{
 %>
 	<script type="text/javascript">

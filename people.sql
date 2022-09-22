@@ -18,6 +18,9 @@ insert into people values('ddd','1234','관리자','남자','30','all');
 insert into people values('eee','1234','관리자','남자','30','all');
 insert into people values('fff','1234','관리자','남자','30','all');
 
+update people set pw='1234', genre='all제발한글' where id='aaa';
+update people set pw='1234', genre='all제발한글' where id='zzz';
+
 create table people(
     ID   varchar2(50) primary key not null,
     PW   varchar2(50) not null,
@@ -65,3 +68,41 @@ drop sequence board_num;
 drop table board;
 
 insert into board values(board_num.nextval, 'admin', '공지사항', '1234', sysdate, 1, 1, 1, 0, '안녕하세요.');
+
+--------------------------------------------------------------------------------------------------
+
+
+
+create table movie(
+   mno varchar2(7) primary key not null,
+   title varchar2(500) not null,
+   genre varchar2(1000) not null,
+   country varchar2(500) not null,
+   runtime varchar2(500) not null,
+   age varchar2(500) not null,
+    opendate varchar2(500) not null,
+    director varchar2(500) not null,
+    actor varchar2(500) not null,
+    story varchar2(2000) not null,
+    poster varchar2(500) not null,
+    love number(10) not null
+    
+);    
+
+    drop table movie;
+
+
+-----------  --
+  create table reword(
+   rno varchar2(7) primary key not null,
+   title varchar2(500) not null,
+   grade varchar2(500) not null,
+   writing varchar2(1000) not null
+);
+
+alter table reword
+add constraint fk_title foreign key (title) references movie(mno);
+
+select * from reword;
+
+drop table reword;
