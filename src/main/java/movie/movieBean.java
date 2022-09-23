@@ -13,7 +13,7 @@ public class movieBean {
 			private String actor;
 			private String story;
 			private String poster;
-			private int love;
+			private double love;
 			
 			public String getMno() {
 				return mno;
@@ -81,10 +81,10 @@ public class movieBean {
 			public void setPoster(String poster) {
 				this.poster = poster;
 			}
-			public int getLove() {
+			public double getLove() {
 				return love;
 			}
-			public void setLove(int love) {
+			public void setLove(double love) {
 				this.love = love;
 			}
 

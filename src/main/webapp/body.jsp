@@ -21,20 +21,28 @@
 <style type="text/css">
 
 	.poster{
-		margin-left:50%;
 		margin-top:10%;
-		position:relative;
+		/* position:relative; */
 	}
-	.tjfaud{
+	#box2{
 		position: absolute;
-		
+		display:block;
+		maring-right:200px;
+		background:rgba(0,0,0,0.5);
 		color: white;
-		
+		width:143px;
+		height: 139px;
+		border-radius: 7px;
+	/* 	padding-left:10%;
+		padding-top:19%; */
+	}
+	#box1{
+		border-radius: 7px;
 	}
 </style>
 </head>
 <body>
-
+<div class="poster">
 <% String id = (String)session.getAttribute("id");
 
 
@@ -46,17 +54,13 @@
 		
 		movieBean mBean = vec.get(i);
 %>
-
-
-
-
-
-<div class="poster">
+	    <span id="box2">제목:<%=mBean.getTitle()%><br>
+	    				장르:<%=mBean.getGenre()%><br>
+	    				국내외:<%=mBean.getCountry()%><br>
+	    				런타임<%=mBean.getRuntime() %></span>
+	
         <img id="box1" src="<%=mBean.getPoster() %>"/>
-	<div class="tjfaud">
-	    <p id="box2">제목:<%=mBean.getTitle()%>,장르:<%=mBean.getGenre()%>국내외:<%=mBean.getCountry()%>,런타임<%=mBean.getRuntime() %></p>
-	</div>
-</div>
 <%} %>
+</div>
 </body>
 </html>

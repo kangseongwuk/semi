@@ -15,8 +15,8 @@
 	body {
 		background: gray;
 	}
-	
-	footer { <!-- footer 부분 위치 고정 -->
+	/* <!-- footer 부분 위치 고정 --> */
+	footer { 
 		position: fixed;
 		top: 80%;
 		width: 100%;
