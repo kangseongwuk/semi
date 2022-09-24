@@ -97,7 +97,6 @@ public class movieDAO {
 				pstmt.setDouble(12, mBean.getLove());
 				
 				pstmt.executeUpdate();
-				System.out.println(sql);
 			}catch(Exception e){
 				e.printStackTrace();
 				System.out.println("오류");
