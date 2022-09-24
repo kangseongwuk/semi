@@ -72,7 +72,37 @@ public class movieDAO {
 			return vec;
 		}
 	
-	
+		//insert movie table
+		//관리자 영화 추가 구현
+		public void insertmovie(movieBean mBean) {
+			
+			try {
+					getConnection();
+					
+				String sql = "insert into movie values(?,?,?,?,?,?,?,?,?,?,?,?)";
+
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, mBean.getMno());
+				pstmt.setString(2, mBean.getTitle());
+				pstmt.setString(3, mBean.getGenre());
+				pstmt.setString(4, mBean.getCountry());
+				pstmt.setString(5, mBean.getRuntime());
+				pstmt.setString(6, mBean.getAge());
+				pstmt.setString(7, mBean.getOpendate());
+				pstmt.setString(8, mBean.getDirector());
+				pstmt.setString(9, mBean.getActor());
+				pstmt.setString(10, mBean.getStory());
+				pstmt.setString(11, mBean.getPoster());
+				pstmt.setDouble(12, mBean.getLove());
+				
+				pstmt.executeUpdate();
+				System.out.println(sql);
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("오류");
+			}
+		}
 	
 	
 	

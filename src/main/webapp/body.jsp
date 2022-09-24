@@ -10,9 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-			  $("#box2").hide();
-		$("#box1").hover(function() {
-			  $("#box2").toggle();
+			  $(".box2").hide();
+		$(".box1").hover(function() {
+			  $(".box2").toggle();
 			});
 	});
 </script>
@@ -21,20 +21,31 @@
 <style type="text/css">
 
 	.poster{
-		margin-left:50%;
 		margin-top:10%;
-		position:relative;
+		margin-left:20%
+		/* position:relative; */
 	}
-	.tjfaud{
+	.box2{
 		position: absolute;
-		
+		display:inline-block;
+		maring-right:200px;
+		background:rgba(0,0,0,0.5);
 		color: white;
-		
+		width:300px;
+		height: 400px;
+		border-radius: 7px;
+	/* 	padding-left:10%;
+		padding-top:19%; */
+	}
+	.box1{
+		border-radius: 7px;
+		width:300px;
+		height: 400px;
 	}
 </style>
 </head>
 <body>
-
+<div class="poster">
 <% String id = (String)session.getAttribute("id");
 
 
@@ -46,17 +57,13 @@
 		
 		movieBean mBean = vec.get(i);
 %>
-
-
-
-
-
-<div class="poster">
-        <img id="box1" src="<%=mBean.getPoster() %>"/>
-	<div class="tjfaud">
-	    <p id="box2">제목:<%=mBean.getTitle()%>,장르:<%=mBean.getGenre()%>국내외:<%=mBean.getCountry()%>,런타임<%=mBean.getRuntime() %></p>
-	</div>
-</div>
+	    <span class="box2">제목:<%=mBean.getTitle()%><br>
+	    				장르:<%=mBean.getGenre()%><br>
+	    				국내외:<%=mBean.getCountry()%><br>
+	    				런타임<%=mBean.getRuntime() %></span>
+	
+        <img class="box1" src="<%=mBean.getPoster() %>">
 <%} %>
+</div>
 </body>
 </html>
