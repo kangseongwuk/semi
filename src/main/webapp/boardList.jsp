@@ -7,12 +7,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <meta charset="UTF-8">
 <title>게시판</title>
 
 <style type="text/css">
-@import url("css/bootstrap.css");
+/* @import url("css/bootstrap.css"); */
 
 a, a:hover {
 		color:#000000;
@@ -20,9 +20,9 @@ a, a:hover {
 
 </style>
 	<script src="jquery-1.12.0.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+<!-- 	<script src="js/bootstrap.js"></script> -->
 </head>
-<body style="margin-top: 100px; width: 85%; float:right;">
+<body>
 <% String id = (String)session.getAttribute("id"); %>
 
 
@@ -51,8 +51,11 @@ a, a:hover {
 	
 	number = count - (currentPage - 1) * pageSize;//테이블에 표시할 번호 설정, 139 - (1 - 1) * 10 = 139
 %>
-	<h2 align="center">문의사항 게시판</h2>
 	<table class="table table-hover" border="1" align="center" >
+	<tr align="center" style="height: 40;">
+		<td colspan="5" align="center">문의사항 게시판</td>
+
+	</tr>
 	<tr align="center" style="height: 40;">
 		<td width="30">번호</td>
 		<td width="250">제목</td>
@@ -85,7 +88,7 @@ a, a:hover {
 		<td><%=bBean.getReadCount() %></td>
 	</tr>
 	<%} %>	
-</table>
+</table><br>
 	<!-- <table align="center">
 		<tr>
 			<td>

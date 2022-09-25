@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="./images/m.ico" rel="shortcut icon" type="image/x-icon">
+<link href="이미지주소.ico" rel="shortcut icon" type="image/x-icon">
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>1'M MOVIE</title>
+<title>header.jsp</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
    
   <!-- Required meta tags -->
@@ -27,7 +27,9 @@
   
   <title>Collapsible Bootstrap Sidebar Navigation Example</title>
   <style>
-
+  body {
+      background: gray;
+   }
    div.wrap {
        max-width: 1000px;
        margin-left: 300px;
@@ -49,7 +51,7 @@
    
   </style>
 </head>
-<body class>
+<body>
    <!-- session을 이용한 로그인 처리 -->
    <%
    String id = (String) session.getAttribute("id");
@@ -57,7 +59,7 @@
 
       %>   
       <div class="wrapper" >
-    <nav id="sidebar">
+    <nav id="sidebar" >
     <div className="sidebar-skeleton"></div>
       <div class="sidebar-header">
       <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
@@ -81,18 +83,15 @@
           <a href="#">찜목록</a>
         </li>
         <li>
-          <a href="main.jsp?center=boardList.jsp">고객센터</a>
+          <a href="center=boardList.jsp">고객센터</a>
         </li>
         <li>
           <a href="movieJoin.jsp">영화추가</a>
         </li>
-        <li>
-          <a href="main.jsp?center=test.jsp">영화추가</a>
-        </li>
       </ul>
     </nav>
     
-   <header class="header">
+   <header>
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="btn btn-dark">
@@ -154,7 +153,8 @@
          </div>
       </nav>
       </header>
-    <div id="content">
+<%--     <div id="content">
+      <div class="wrap">
 <%
 	String center = request.getParameter("center");
 
@@ -163,7 +163,8 @@
 	}
 %>
 <jsp:include page="<%=center %>"/>
-      </div>
+    </div>
+      </div> --%>
      
       
       

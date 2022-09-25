@@ -11,9 +11,9 @@
 <title>회원 목록 보기 화면</title>
 <style>
 @import url("css/bootstrap.css");
-table{
+/* table{
 	margin-top:5%;
-}
+} */
 
 a, a:hover {
 		color:#000000;
@@ -22,14 +22,18 @@ a, a:hover {
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
-<body style="margin-top: 100px;">
+<body>
 <%
 	peopleDAO pdao = new peopleDAO();
 	
 	Vector<peopleBean> vec = pdao.allselectmember();
 %>
-	<h2 align="center">회원목록</h2>
 <table align="center" class="table table-bordered" border="1" style="width:50%;">
+	<tr>
+		<td colspan="5" align="center">
+		 회원목록
+		</td>
+	</tr>
 	<tr align="center" style="height: 40;">
 		<td width="100">아&nbsp;이&nbsp;디</td>
 		<td width="120">이&nbsp;&nbsp;름</td>

@@ -5,10 +5,11 @@
 <head>
 <style type="text/css">
     @import url("css/sidebar.css");
+<link rel="stylesheet" href="css/style.css">
 </style>
 <meta charset="UTF-8">
 <title>menu.jsp</title>
-  <link rel="stylesheet" href="css/style.css">
+<!--   <link rel="stylesheet" href="css/style.css"> -->
 </head>
 <body>
      <nav id="sidebar" >

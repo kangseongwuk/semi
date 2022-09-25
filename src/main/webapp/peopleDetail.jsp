@@ -14,7 +14,7 @@
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
-<body style="margin-top: 100px;">
+<body>
 <%
 	String id = request.getParameter("id");
 
@@ -22,9 +22,9 @@
 	peopleBean pBean = pdao.oneselectmember(id);
 %>
 
-<h2 align="center">회원정보 상세 보기 화면 구현</h2>
 <div align="center">
-	<table class="table table-bordered" border="1" style="text-align: center; width:50%;">
+<h2 align="center">회원정보 상세 보기 화면 구현</h2>
+	<table class="table table-bordered" border="1" style="text-align: center; ">
 		<tr align="center" style="height: 40;">
 			<td width="100">아이디</td>
 			<td><%=pBean.getId() %></td>
