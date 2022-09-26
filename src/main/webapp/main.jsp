@@ -103,7 +103,11 @@
          <!-- 검색바 -->
          <div class="container">
 
+<<<<<<< HEAD
                     <div class="row height d-flex justify-content-center align-items-center">
+=======
+                    <!-- <div class="row height d-flex justify-content-center align-items-center"> -->
+>>>>>>> 94443fca8a5fce784d75a1e31fb618b8d056b8d9
 
                       <div class="col-md-8" >
 
@@ -115,7 +119,11 @@
                         
                       </div>
                       
+<<<<<<< HEAD
                     </div>
+=======
+                    <!-- </div> -->
+>>>>>>> 94443fca8a5fce784d75a1e31fb618b8d056b8d9
                 </div>
 
       <nav>

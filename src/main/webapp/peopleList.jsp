@@ -11,9 +11,9 @@
 <title>회원 목록 보기 화면</title>
 <style>
 @import url("css/bootstrap.css");
-table{
+/* table{
 	margin-top:5%;
-}
+} */
 
 a, a:hover {
 		color:#000000;
@@ -22,7 +22,7 @@ a, a:hover {
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
-<body style="margin-top: 100px;">
+<body>
 <%
 	peopleDAO pdao = new peopleDAO();
 	
