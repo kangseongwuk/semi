@@ -9,13 +9,26 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
+/* 	$(document).ready(function(){
 			  $(".box2").hide();
 		$(".box1").hover(function() {
 			  $(".box2").toggle();
 			});
-	});
+	}); */
+      function popUpLayer(){
+	        //document.getElementById("PopUp").style.display='inline'
+		        //만일 Pop라는 녀석이 닫혀있다면??
+		        if(document.getElementById("PopUp").style.display=="none"){
+		           //열어주어라
+		           document.getElementById("PopUp").style.display='inline'
+		        //그렇지 않은 모든 경우라면??
+		        }else{
+		           //닫아주어라
+		           document.getElementById("PopUp").style.display='none'
+		        }
+	     }
 </script>
+
 <meta charset="UTF-8">
 <title>body</title>
 <style type="text/css">
@@ -41,6 +54,13 @@
 		height: 400px;
 		border-radius: 7px;
 	}
+	#PopUp{
+		background:rgba(0,0,0,0.8);
+		color: white;
+		width: 70%;
+		height: 100%;
+		border-radius: 10px;
+	}
 </style>
 </head>
 <body>
@@ -63,8 +83,12 @@
 	    				런타임<%=mBean.getRuntime() %></span>
 	</div> --%>
 	<div  class="box1">
-        <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+       <a href="javascript:popUpLayer();"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+       <%--  <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a> --%>
 	</div>
+        <Div id="PopUp" style="position:absolute; left:20%; top:10%;z-index:1;display:none;text-align: center;">
+        	<jsp:include page="movieDetail.jsp?mno=<%=mBean.getMno()%>"/>
+        </Div>
 <%} %>
 </div>
 </body>

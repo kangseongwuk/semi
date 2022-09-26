@@ -34,7 +34,7 @@
 
       %>   
       <div class="wrapper" >
-	    <nav id="sidebar" style="color: white">
+	    <nav id="sidebar" style="color: white;height:200vh;">
 	    <div className="sidebar-skeleton"></div>
 	      <div class="sidebar-header">
 	      <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
@@ -129,7 +129,7 @@
          </div>
       </nav>
       </header>
-	    <div id="content">
+	    <!-- <div id="content"> -->
 				<div class="wrap">
 				<%
 					String center = request.getParameter("center");
@@ -140,7 +140,7 @@
 				%>
 				<jsp:include page="<%=center %>"/>
 				</div>
-	      </div>
+	      <!-- </div> -->
      
       
       

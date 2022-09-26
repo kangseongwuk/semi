@@ -1,11 +1,11 @@
 @charset "UTF-8";
 /* body CSS태그 */  
   .body {
-	background: gray;
+	/* background: gray; */
 	font-family: "Poppins", sans-serif;
 	font-weight: 300;
 	font-family: 'Inter', sans-serif;
-	background: #fff;
+	background: gray;
    }
    div.box {
         flex: 1;
@@ -179,13 +179,14 @@ ul ul a {
   background: #1b1d24;
 }
 
-#content {
+.wrap {
   width: 100%;
   padding: 20px;
   min-width: height 100vh;
   transition: all 0.4s;
   text-align: justify;
-  background: gray
+  background: gray;
+  height:1000px;
 }
    
 div.wrap {
