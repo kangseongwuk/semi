@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="m.ico" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
+<link href="이미지주소.ico" rel="shortcut icon" type="image/x-icon">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>main.jsp</title>
@@ -15,9 +15,9 @@
 	body {
 		background: gray;
 	}
-	/* <!-- footer 부분 위치 고정 --> */
-	footer { 
-		position: fixed;
+
+	footer { 	/*footer 부분 위치 고정*/
+		/* position: fixed; */
 		top: 80%;
 		width: 100%;
 		text-align: center;
@@ -55,6 +55,7 @@ cursor : url(./images/popcorn.cur), auto;
 </style>
 </head>
 <body>
+<div>
 <%
 	String center = request.getParameter("center");
 
@@ -68,11 +69,13 @@ cursor : url(./images/popcorn.cur), auto;
 	<aside>
 	<jsp:include page="menu_Form.jsp"></jsp:include>
 	</aside>
-
+	<section>
 			<jsp:include page="<%=center %>"/>
-
+	</section>
 	<footer>
+		<hr>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</footer>
+</div>
 </body>
 </html>
