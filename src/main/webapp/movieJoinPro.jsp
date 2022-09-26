@@ -26,15 +26,17 @@
 		<jsp:setProperty name="mBean" property="*"/></jsp:useBean>
 
 <%	
+	try{
 	mBean.setGenre(textgenre);
 
-	
 	//데이터베이스 클래스에 대한 객체 생성
 	movieDAO mdao = new movieDAO();	
 	mdao.insertmovie(mBean);
 	//메인화면으로 이동
 	response.getWriter().print("<script>alert('영화추가 성공'); location.href = 'main.jsp';</script>");
-	/* response.sendRedirect("main.jsp"); */
+	}catch (Exception e) {
+	response.getWriter().print("<script>alert('영화추가 실패 mno를 확인하세요'); location.href = 'main.jsp';</script>");
+	}
 %>	
 
 	

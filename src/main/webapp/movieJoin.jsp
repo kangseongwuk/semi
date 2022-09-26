@@ -52,14 +52,14 @@ body.movieJoin {
 	right: -30px;
 	bottom: -80px;
 }
-
+/* form에 대한 css */
 form {
 	/* height: 1100px; */
 	width: 400px;
 	background-color: rgba(255, 255, 255, 0.13);
 	position: absolute;
 	transform: translate(-50%, -50%);
-	top: 90%;
+	top: 105%;
 	left: 50%;
 	border-radius: 10px;
 	backdrop-filter: blur(10px);
@@ -197,7 +197,7 @@ button {
 	<form action="movieJoinPro.jsp" method="post">
 		<h3>Join us!</h3>
 
-		<label>CODE</label> <input type="text" placeholder="영화코드" name="code">
+		<label>CODE</label> <input type="text" placeholder="영화코드" name="mno">
 		<label>제목</label> <input type="text" placeholder="영화제목" name="title">
 		<label>장르</label>
 		<table align="center" id=table>

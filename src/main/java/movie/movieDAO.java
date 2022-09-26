@@ -80,18 +80,7 @@ public class movieDAO {
 					getConnection();
 					
 				String sql = "insert into movie values(?,?,?,?,?,?,?,?,?,?,?,?)";
-				System.out.println(mBean.getMno());
-				System.out.println(mBean.getTitle());
-				System.out.println(mBean.getGenre());
-				System.out.println(mBean.getCountry());
-				System.out.println(mBean.getRuntime());
-				System.out.println(mBean.getAge());
-				System.out.println(mBean.getOpendate());
-				System.out.println(mBean.getDirector());
-				System.out.println(mBean.getActor());
-				System.out.println(mBean.getStory());
-				System.out.println(mBean.getPoster());
-				System.out.println(mBean.getLove());
+
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, mBean.getMno());
@@ -108,7 +97,6 @@ public class movieDAO {
 				pstmt.setDouble(12, mBean.getLove());
 				
 				pstmt.executeUpdate();
-				System.out.println(sql);
 			}catch(Exception e){
 				e.printStackTrace();
 				System.out.println("오류");
