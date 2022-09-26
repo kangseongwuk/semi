@@ -56,14 +56,14 @@
 		
 		movieBean mBean = vec.get(i);
 %>
-	<div class="box2">
+<%-- 	<div class="box2">
 	    <span>제목:<%=mBean.getTitle()%><br>
 	    				장르:<%=mBean.getGenre()%><br>
 	    				국내외:<%=mBean.getCountry()%><br>
 	    				런타임<%=mBean.getRuntime() %></span>
-	</div>
+	</div> --%>
 	<div  class="box1">
-        <img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px">
+        <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
 	</div>
 <%} %>
 </div>

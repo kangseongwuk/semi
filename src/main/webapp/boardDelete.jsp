@@ -8,8 +8,11 @@
 <style type="text/css">
 @import url("css/bootstrap.css");
 
-a, a:hover {
+.body{
 		color:#000000;
+}
+a, a:hover {
+		color:inherit;
 		text-decoration:none;}
 
 </style>
@@ -19,7 +22,7 @@ a, a:hover {
 <meta charset="UTF-8">
 <title>작성 글 삭제</title>
 </head>
-<body style="margin-top:100px">
+<body class="body">
 	<%
 	request.setCharacterEncoding("UTF-8");
 	int b_no = Integer.parseInt(request.getParameter("b_no"));

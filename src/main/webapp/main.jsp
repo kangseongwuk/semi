@@ -3,55 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="이미지주소.ico" rel="shortcut icon" type="image/x-icon">
+<link href="m.ico" rel="shortcut icon" type="image/x-icon">
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>header.jsp</title>
+<title>1'M MOVIE</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
    
   <!-- Required meta tags -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
   <!-- cdnjs.com / libraries / fontawesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" charset="utf-8"></script>
 
   <!-- css ekternal -->
-  <link rel="stylesheet" href="css/style.css">
   
+  <link rel="stylesheet" href="css/mainPage.css">
   
-  <link rel="stylesheet" href="css/header.css">
-  
-  <title>Collapsible Bootstrap Sidebar Navigation Example</title>
-  <style>
-  body {
-      background: gray;
-   }
-   div.wrap {
-       max-width: 1000px;
-       margin-left: 300px;
-       margin-top: 80px;
-       margin-bottom: 80px;
-       display: flex;
-       justify-content: space-between;
-   }   
-   
-   div.box {
-        flex: 1;
+  <title>1'M MOVIE</title>
 
-    }
-    
-   .container{
-      
-   }
-   
-   
-  </style>
 </head>
-<body>
+<body class="body">
    <!-- session을 이용한 로그인 처리 -->
    <%
    String id = (String) session.getAttribute("id");
@@ -59,39 +34,40 @@
 
       %>   
       <div class="wrapper" >
-    <nav id="sidebar" >
-    <div className="sidebar-skeleton"></div>
-      <div class="sidebar-header">
-      <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
-      </div>
-      <ul class="lisst-unstyled components">
-        <li><a href="#">추천</a></li>
-        <li class="active">
-          <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장르별</a>
-          <ul class="collapse lisst-unstyled" id="foodSubmenu">
-            <li><a href="#">코믹</a></li>
-            <li><a href="#">멜로</a></li>
-            <li><a href="#">액션</a></li>
-            <li><a href="#">호러</a></li>
-            <li><a href="#">스릴러</a></li>
-            <li><a href="#">드라마</a></li>
-            <li><a href="#">스포츠</a></li>
-            <li><a href="#">SF</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">찜목록</a>
-        </li>
-        <li>
-          <a href="center=boardList.jsp">고객센터</a>
-        </li>
-        <li>
-          <a href="movieJoin.jsp">영화추가</a>
-        </li>
-      </ul>
-    </nav>
+	    <nav id="sidebar" style="color: white">
+	    <div className="sidebar-skeleton"></div>
+	      <div class="sidebar-header">
+	      <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
+	      </div>
+	      <ul class="lisst-unstyled components">
+	        <li><a href="main.jsp?center=random.jsp">추천</a></li>
+	        <li class="active">
+	          <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장르별</a>
+	          <ul class="collapse lisst-unstyled" id="foodSubmenu">
+	            <li><a href="#">코믹</a></li>
+	            <li><a href="#">멜로</a></li>
+	            <li><a href="#">액션</a></li>
+	            <li><a href="#">호러</a></li>
+	            <li><a href="#">스릴러</a></li>
+	            <li><a href="#">드라마</a></li>
+	            <li><a href="#">스포츠</a></li>
+	            <li><a href="#">SF</a></li>
+	          </ul>
+	        </li>
+	        <li>
+	          <a href="#">찜목록</a>
+	        </li>
+	        <li>
+	          <a href="main.jsp?center=boardList.jsp">고객센터</a>
+	        </li>
+	        <li>
+	          <a href="movieJoin.jsp">영화추가</a>
+	          <a href="main.jsp?center=test.jsp">테스트</a>
+	        </li>
+	      </ul>
+	    </nav>
     
-   <header>
+   <header class="header">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="btn btn-dark">
@@ -103,11 +79,7 @@
          <!-- 검색바 -->
          <div class="container">
 
-<<<<<<< HEAD
-                    <div class="row height d-flex justify-content-center align-items-center">
-=======
                     <!-- <div class="row height d-flex justify-content-center align-items-center"> -->
->>>>>>> 94443fca8a5fce784d75a1e31fb618b8d056b8d9
 
                       <div class="col-md-8" >
 
@@ -119,11 +91,7 @@
                         
                       </div>
                       
-<<<<<<< HEAD
-                    </div>
-=======
                     <!-- </div> -->
->>>>>>> 94443fca8a5fce784d75a1e31fb618b8d056b8d9
                 </div>
 
       <nav>
@@ -161,18 +129,18 @@
          </div>
       </nav>
       </header>
-    <div id="content">
-      <div class="wrap">
-<%
-	String center = request.getParameter("center");
-
-	if(center == null){
-		center = "body.jsp";
-	}
-%>
-<jsp:include page="<%=center %>"/>
-    </div>
-      </div>
+	    <div id="content">
+				<div class="wrap">
+				<%
+					String center = request.getParameter("center");
+				
+					if(center == null){
+						center = "body.jsp";
+					}
+				%>
+				<jsp:include page="<%=center %>"/>
+				</div>
+	      </div>
      
       
       
@@ -180,7 +148,8 @@
       
 <script type="text/javascript"
 src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></div>
+</script>
+</div>
   <!-- wrapper and -->
 
 
@@ -195,7 +164,7 @@ src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
       });
     });
   </script>
-  <script type="text/javascript">
+<!--   <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
@@ -222,6 +191,6 @@ try {
 } catch (error) {
   console.log(error);
 }
-</script>
+</script> -->
 </body>
 </html>

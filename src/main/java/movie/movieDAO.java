@@ -31,22 +31,61 @@ public class movieDAO {
 	}
 	
 	//게시판 전체보기
-		public Vector<movieBean> allselectMovie() {
+		public movieBean oneselectMovie(String mno) {
 
 			getConnection();
 
-			Vector<movieBean> vec = new Vector<>();
+			movieBean mbean = new movieBean();
 
 			try {
-				String sql = "select * from movie order by mno";
+				String sql = "select * from movie where mno=?";
 
 				pstmt = conn.prepareStatement(sql);
-
+				pstmt.setString(1, mno);
 				rs = pstmt.executeQuery();
 
 				while (rs.next()) {
-					movieBean bean = new movieBean();
 
+					mbean.setMno(rs.getString(1));
+					mbean.setTitle(rs.getString(2));
+					mbean.setGenre(rs.getString(3));
+					mbean.setCountry(rs.getString(4));
+					mbean.setRuntime(rs.getString(5));
+					mbean.setAge(rs.getString(6));
+					mbean.setOpendate(rs.getString(7));
+					mbean.setDirector(rs.getString(8));
+					mbean.setActor(rs.getString(9));
+					mbean.setStory(rs.getString(10));
+					mbean.setPoster(rs.getString(11));
+					mbean.setLove(rs.getInt(12));
+
+				}
+				if (conn != null) {
+					conn.commit();
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return mbean;
+		}
+		//게시판 전체보기
+		public Vector<movieBean> allselectMovie() {
+			
+			getConnection();
+			
+			Vector<movieBean> vec = new Vector<>();
+			
+			try {
+				String sql = "select * from movie order by mno";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					movieBean bean = new movieBean();
+					
 					bean.setMno(rs.getString(1));
 					bean.setTitle(rs.getString(2));
 					bean.setGenre(rs.getString(3));
@@ -59,7 +98,7 @@ public class movieDAO {
 					bean.setStory(rs.getString(10));
 					bean.setPoster(rs.getString(11));
 					bean.setLove(rs.getInt(12));
-
+					
 					vec.add(bean);
 				}
 				if (conn != null) {
@@ -103,6 +142,44 @@ public class movieDAO {
 			}
 		}
 	
+	//추천페이지 랜덤값
+		//랜덤 추천 
+	      public Vector<movieBean> RandomselectMovie(String Genre) {
+
+	         
+
+	         Vector<movieBean> vec = new Vector<>();
+
+	         try {
+	            
+	            getConnection();
+	            String sql = "select genre,poster,title,country,runtime from( select* from movie where poster like '.%' order by dbms_random.value ) where genre = ? and rownum<=10";
+	            
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, Genre);
+	            
+	              rs = pstmt.executeQuery();
+	             
+
+	            while (rs.next()) {
+	               movieBean bean = new movieBean();
+
+	               bean.setGenre(rs.getString(1));
+	               bean.setPoster(rs.getString(2));
+	               bean.setTitle(rs.getString(3));
+	               bean.setCountry(rs.getString(4));
+	               bean.setRuntime(rs.getString(5));
+	               vec.add(bean);
+	            }
+	            conn.close();
+	            /*
+	             * if (conn != null) { conn.commit(); }
+	             */         
+	            } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	         return vec;
+	      }
 	
 	
 	

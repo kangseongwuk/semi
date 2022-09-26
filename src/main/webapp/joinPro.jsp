@@ -18,7 +18,7 @@
 	String textgenre  = "";
 	
 	for(int i=0; i < genre.length; i++){
-		textgenre += genre[i] + ", ";
+		textgenre += genre[i] + " ";
 	}
 	
 %>
