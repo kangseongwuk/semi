@@ -35,7 +35,7 @@ public class movieDAO {
 
 			getConnection();
 
-			movieBean mbean = new movieBean();
+			movieBean mbean1 = new movieBean();
 
 			try {
 				String sql = "select * from movie where mno=?";
@@ -46,18 +46,18 @@ public class movieDAO {
 
 				while (rs.next()) {
 
-					mbean.setMno(rs.getString(1));
-					mbean.setTitle(rs.getString(2));
-					mbean.setGenre(rs.getString(3));
-					mbean.setCountry(rs.getString(4));
-					mbean.setRuntime(rs.getString(5));
-					mbean.setAge(rs.getString(6));
-					mbean.setOpendate(rs.getString(7));
-					mbean.setDirector(rs.getString(8));
-					mbean.setActor(rs.getString(9));
-					mbean.setStory(rs.getString(10));
-					mbean.setPoster(rs.getString(11));
-					mbean.setLove(rs.getInt(12));
+					mbean1.setMno(rs.getString(1));
+					mbean1.setTitle(rs.getString(2));
+					mbean1.setGenre(rs.getString(3));
+					mbean1.setCountry(rs.getString(4));
+					mbean1.setRuntime(rs.getString(5));
+					mbean1.setAge(rs.getString(6));
+					mbean1.setOpendate(rs.getString(7));
+					mbean1.setDirector(rs.getString(8));
+					mbean1.setActor(rs.getString(9));
+					mbean1.setStory(rs.getString(10));
+					mbean1.setPoster(rs.getString(11));
+					mbean1.setLove(rs.getInt(12));
 
 				}
 				if (conn != null) {
@@ -67,7 +67,7 @@ public class movieDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return mbean;
+			return mbean1;
 		}
 		//게시판 전체보기
 		public Vector<movieBean> allselectMovie() {
@@ -181,7 +181,43 @@ public class movieDAO {
 	         return vec;
 	      }
 	
-	
+	    //검색창
+	         public Vector<movieBean> searchselectMovie(String title) {
+
+	               
+
+	               Vector<movieBean> vec = new Vector<>();
+
+	               try {
+	                  
+	                  getConnection();
+	                  String sql =  "select title,genre,poster,country,runtime from movie where title like ? " ;
+	                  
+	                  pstmt = conn.prepareStatement(sql);
+	                  pstmt.setString(1, "%"+title+"%");
+	                  
+	                    rs = pstmt.executeQuery();
+	                   
+
+	                  while (rs.next()) {
+	                     movieBean bean = new movieBean();
+	                     
+	                     bean.setTitle(rs.getString(1));
+	                     bean.setGenre(rs.getString(2));
+	                     bean.setPoster(rs.getString(3));
+	                     bean.setCountry(rs.getString(4));
+	                     bean.setRuntime(rs.getString(5));
+	                     vec.add(bean);
+	                  }
+	                  conn.close();
+	                  /*
+	                   * if (conn != null) { conn.commit(); }
+	                   */         
+	                  } catch (Exception e) {
+	                  e.printStackTrace();
+	               }
+	               return vec;
+	            }
 	
 	
 	

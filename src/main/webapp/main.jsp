@@ -25,6 +25,39 @@
   
   <title>1'M MOVIE</title>
 
+
+<style>
+.dropbtn {
+ 
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
 </head>
 <body class="body">
    <!-- session을 이용한 로그인 처리 -->
@@ -76,22 +109,29 @@
         </div>
       </nav>
       
-         <!-- 검색바 -->
+          <!-- 검색바   2022.09.26 수정-->  
+   
+   
          <div class="container">
 
-                    <!-- <div class="row height d-flex justify-content-center align-items-center"> -->
+    <form action="searchPro.jsp" method="get" >
+                    <!--  <div class="row height d-flex justify-content-center align-items-center"> -->
 
                       <div class="col-md-8" >
 
                         <div class="search" >
                           <i class="fa fa-search"></i>
-                          <input type="text" class="form-control" placeholder="Have a question? Ask Now">
-                          <button class="btn btn-primary"style="border-color:rgb(51,51,51)">Search</button>
+             
+                         
+                          <input type="text" name="title" class="form-control"  placeholder="영화를 검색해보세요" style="color:gray;">
+                          <button type="submit" class="btn btn-primary" style="border-color:rgb(51,51,51)" onclick="location.href='main.jsp?center=searchPro.jsp'">Search</button>
+                       
                         </div>
                         
                       </div>
                       
-                    <!-- </div> -->
+                   <!--  </div> -->
+           </form>
                 </div>
 
       <nav>
@@ -116,15 +156,21 @@
               </form>
          <%
          }else if(id != null){%>
-            <a href="Login.jsp"> <img alt="logo"
-               src="./images/procutcut.png" height="35px" width="35px"
-               style="align: -1px"></a>&nbsp;&nbsp; <span
-               style="vertical-align: center"><%=id %></span>&nbsp;&nbsp; 
-              <form action="Logout.jsp" method="post">
-              <input type="submit" value="로그아웃">
-              </form>
-         
-         <%} %>
+         <a href="Login.jsp"></a>      	
+	           <div class="dropdown">
+		    	<button class="dropbtn">MY PAGE</button>
+				   	 <div class="dropdown-content">
+				     	    <a href="main.jsp?center=mypageDetail.jsp?id=<%=id%>">회원목록</a> 
+				     	    <a href="#"></a>
+				    	    <a href="#" onclick="return Logout_form()">로그아웃</a>
+				   	</div>
+			  	</div>
+					  	<form id="Logout" action="Logout.jsp" method="post" style = "display:none">
+						<input type="submit" value="로그아웃">
+						</form>
+	          	<span><%=id %></span>&nbsp;&nbsp; 
+							            
+			         <%} %>
 
          </div>
       </nav>
@@ -163,8 +209,14 @@ src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
         $("#sidebar").toggleClass('active');
       });
     });
+    
+    function Logout_form(){
+    	document.getElementById('Logout').submit();
+
+    }
+    
   </script>
-<!--   <script type="text/javascript">
+<!-- <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);

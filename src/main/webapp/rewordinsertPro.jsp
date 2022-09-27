@@ -10,20 +10,23 @@
 <title>댓글저장</title>
 </head>
 <body>
-	<jsp:useBean id="rbean" class="movie.rewordBean">
-		<jsp:setProperty name="rbean" property="*"/>
-	</jsp:useBean>
+	<jsp:useBean id="rBean" class="movie.rewordBean">
+		<jsp:setProperty name="rBean" property="*"/></jsp:useBean>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String s_grade = request.getParameter("grade");
-	int grade = Integer.parseInt(s_grade);
+	double grade = Integer.parseInt(request.getParameter("grade"));
+	String mno = request.getParameter("mno");
+	String title =  request.getParameter("title");
 	
 	rewordDAO rdao = new rewordDAO();
-	rdao.rewordinsert(rbean);
+	rdao.rewordinsert(rBean);
 	
-	response.sendRedirect("main.jsp?center=movieDetail.jsp?mno=mBean.getMno() ");
 	
-%>
+	response.sendRedirect("main.jsp?center=movieDetail.jsp?mno="+request.getParameter("mno"));
+%>	
+	
+
 </body>
 </html>

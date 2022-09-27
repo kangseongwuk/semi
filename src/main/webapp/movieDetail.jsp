@@ -14,19 +14,17 @@
 
 <style type="text/css">
 /* @import url("css/bootstrap.css"); */
-
-/* a, a:hover {
-		color:inherit;
-		text-decoration:none;} */
+/* 
+a, a:hover {
+      color:#000000;
+      text-decoration:none;} */
 table {
-/* 	border-collapse : collapse; */
-	border-spacing : 3;
-	color:white;
-	text-align: center;
-	
+   border-collapse : collapse;
+   border-spacing : 0;
+   color:white;
 }
 </style>
-	<style>
+   <style>
 .rewordform .radio_box{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     direction: rtl; /* 별 순서 반전 */
@@ -36,7 +34,7 @@ table {
     display: none; /* 라디오박스 감춤 */
 }
 .rewordform label{
-    font-size: 30px; /* 별 크기 */
+    font-size: 40px; /* 별 크기 */
     color: transparent; /* 기존 별 컬러 제거 */
     text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
 }
@@ -53,120 +51,115 @@ table {
 .rewordform input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
 }
+#aaaa{
+float:left;
+width:1200px;
+}
+#bbbb{
+float:left;
+	display: inline-block;
+}
+#cccc{
+float:right;
+	display: inline-block;
+}
 </style>
 </head>
-<body class="body">
+<body>
+
 <%
-	request.setCharacterEncoding("UTF-8");
-	String id = (String) session.getAttribute("id");
-	String mno = request.getParameter("mno");
 
-	int rno = 1; 
-	
-	movieDAO mdao = new movieDAO();
-	movieBean mBean = mdao.oneselectMovie(mno);
+   request.setCharacterEncoding("UTF-8");
+   String id = (String) session.getAttribute("id");
 
-	rewordDAO rdao = new rewordDAO();
-	rewordBean rBean = rdao.OneSelectreword(rno);
-	
-	Vector<rewordBean> rvec = new Vector<>();
-	
+   String mno = request.getParameter("mno");
+   String title = request.getParameter("title");
+   //int id = Integer.parseInt(id1);
+   /* int rno = Integer.parseInt(request.getParameter("rno")); */ 
+	   
+
+   rewordDAO rdao = new rewordDAO();
+   
+   //아임무비 평점 구하기
+   rewordBean rBean2 = rdao.getGrade_avg(mno);
+   
+   Vector<rewordBean> rvector = rdao.rewordRnoSelect(mno);
+
+   movieDAO mdao = new movieDAO();
+   movieBean mBean = mdao.oneselectMovie(mno);
+   
 %>
 
 <!-- movieDAO 랑 rewordDAO 추가가 필요하며, movie테이블의 url칼럼도 필요함. -->
 
 <h2 align="center">영화정보 상세 보기</h2>
-	<table align="center" style="text-align: center;">
-		<tr align="center">
-			<td>CODE</td>
-			<td ><%=mBean.getMno() %></td>
-			<td>영화제목</td>
-			<td ><%=mBean.getTitle()%></td>
-			<td>장르</td>
-			<td ><%=mBean.getGenre() %></td>
-		</tr>
-		<tr align="center">
-			<td>상영시간</td>
-			<td ><%=mBean.getRuntime() %></td>
-			<td>개봉일</td>
-			<td ><%=mBean.getOpendate() %></td>
-		</tr>		
-		<tr>
-			<td>감독 및 출연진</td>
-			<td colspan="3"  style="padding-right: 230px;"><%=mBean.getDirector() %>,<%=mBean.getActor() %></td>
-		</tr>	
-		<tr>
-			<td colspan="4">줄거리</td>	
-		</tr>
-		<tr>
-			<td>포스터, 좋아요</td>
-			<td colspan="3"  style="padding-right: 230px;"><img src="<%=mBean.getPoster() %>"></td>
-		</tr>	
-<!-- 	</table>
-		
-		<table class="table table-hover" border="1" align="center" > -->
-		<tr align="center">
-			<td width="50">아임무비 평점</td>
-			<td width="50">한줄평</td>
-		</tr>
+<div id="aaaa">
+<div id="bbbb"align="center">
+      
+   <table class="table table-striped" border="1" style="text-align: center; width: 100%;">
+      <tr align="center" style="height: 40;">
+         <td width="100">영화제목</td>
+         <td ><%=mBean.getTitle() %></td>
+         <td width="200">장르</td>
+         <td ><%=mBean.getGenre() %></td>
+      </tr>
+      <tr align="center" style="height: 40;">
+         <td width="100">상영시간</td>
+         <td ><%=mBean.getRuntime() %></td>
+         <td width="100">개봉일</td>
+         <td ><%=mBean.getOpendate() %></td>
+      </tr>      
+      <tr>
+         <td width="100">감독 및 출연진</td>
+         <td colspan="3"  style="padding-right: 230px;"><%=mBean.getDirector() %>,<%=mBean.getActor() %></td>
+      </tr>   
+      <tr>
+         <td width="100">줄거리</td>   
+         <td colspan="3"><%=mBean.getStory() %></td>
+      </tr>
+ 
+      <tr>
+         <td width="100">아임무비 평점</td>
+         <td colspan="3"  style="padding-right: 230px;"><%=rBean2.getGrade_avg() %></td>
+      </tr>   
+      
+      <table class="table table-hover" border="1" align="center" >
+      <tr align="center" style="height: 40;">
+         <td width="30%">평점</td>
+         <td>한줄평</td>
+      </tr>
 
- 	<%
-		for(int i=0; i < rvec.size(); i++){
-			
-			rewordBean rbean = rvec.get(i);		
-	%>
-	<tr height="40" align="center">
-		
-		<td>
-			<a href="main.jsp?center=movieDetailPop.jsp?mno=<%=mBean.getMno()%>" style="text-decoration:none"><%=rBean.getTitle() %></a>
-		</td>
-		<td>
-			<%=rBean.getGrade_avg() %>
-		</td>
-		<td>
-			<%=rBean.getWriting() %>
-		</td>
-	</tr>
-	<%} %>	
-		<tr>
-			<td colspan="4">
-				<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?mno=<%=mBean.getMno() %>'" class="btn btn-light">수정하기</button>&nbsp;&nbsp;
-				<button onclick="location.href='main.jsp?center=rewordDelete.jsp?mno=<%=mBean.getMno() %>'" class="btn btn-light">삭제하기</button>&nbsp;&nbsp;
-			</td>
-		</tr>
-	</table>
-<form action="rewordinsertPro.jsp" method="post" class="rewordform" id="myform">
- 					<div>
-
-						<h4>영화에 대한 코멘트를 남겨주세요!</h4>
-						<div>
-							<input type="hidden" name="mno" value="<%=rBean.getMno() %>">
-							<input type="hidden" name="title" value="<%=rBean.getTitle() %>">
-						</div>
-						
-					    <div class="radio_box">
-					        <!-- <legend>별점</legend> -->
-							<input type="radio" name="grade" value="5" id="star1"><label for="star1">★</label> 
-							<input type="radio" name="grade" value="4" id="star2"><label for="star2">★</label> 
-							<input type="radio" name="grade" value="3" id="star3"><label for="star3">★</label>
-							<input type="radio" name="grade" value="2" id="star4"><label for="star4">★</label> 
-							<input type="radio" name="grade" value="1" id="star5"><label for="star5">★</label>
-						</div>
-						    
-						
-						<br>
-						
-						<div>
-							<textarea name="writing" placeholder="영화는 어떠셨나요?" rows="4" style="width:500px;"></textarea>
-						</div>
-						<br>
-						
-						<div>
-							<button type="submit">입력</button>
-							<button type="reset">취소</button>
-						</div>
-					</div>
-						<!-- <legend>별점 선택</legend> -->
-	</form>
+<%
+      for(int i=0; i < rvector.size(); i++){
+         
+         rewordBean rBean3 = rvector.get(i);      
+%>
+      <tr height="40" align="center">
+         <td>
+            <%=rBean3.getGrade() %>
+         </td>
+         <td>
+            <%=rBean3.getWriting() %>
+         </td>
+      </tr>
+      <%} %>   
+</table>
+      
+      <tr style="height: 40; ">
+         <td colspan="4">
+            <button onclick="location.href='main.jsp?center=rewordinsert.jsp?mno=<%=mBean.getMno()%>'" class="btn btn-light">댓글쓰기</button>&nbsp;&nbsp;
+            <button onclick="location.href='main.jsp?center=rewordUpdate.jsp?mno=<%=mBean.getMno() %>'" class="btn btn-light">수정하기</button>&nbsp;&nbsp;
+            <button onclick="location.href='main.jsp?center=rewordDelete.jsp?mno=<%=mBean.getMno() %>'" class="btn btn-light">삭제하기</button>&nbsp;&nbsp;
+            <button onclick="location.href='main.jsp'" class="btn btn-light">메인으로</button>
+         </td>
+      </tr>
+   </table>
+	<jsp:include page="rewordinsert.jsp"/>
+</div>
+	<div id="cccc">
+         포스터, 좋아요
+         <img src= "<%=mBean.getPoster() %>">
+      </div>
+      </div> 
 </body>
 </html>

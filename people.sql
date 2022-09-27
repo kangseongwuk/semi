@@ -6,7 +6,7 @@ create table people(
     NAME   varchar2(15) not null,
     GENDER   varchar2(6) not null,
     AGE   number(3) not null,
-    GENRE   varchar2(50) not null
+    GENRE   varchar2(150) not null
 );
 
 drop table people;
@@ -20,6 +20,7 @@ insert into people values('ddd','1234','관리자','남자','30','all');
 insert into people values('eee','1234','관리자','남자','30','all');
 insert into people values('fff','1234','관리자','남자','30','all');
 
+alter table people modify(genre varchar2(150));
 
 commit;
 

@@ -15,6 +15,12 @@
 	rel="stylesheet">
 <!--Stylesheet-->
 <style media="screen">
+
+.mainJoinForm {
+	margin-top: 120px;
+}
+
+
 *, *:before, *:after {
 	padding: 0;
 	margin: 0;
@@ -177,16 +183,28 @@ button {
 }
 
 </style>
+
 </head>
 <body>
+<script>
+document.querySelector('.mainJoinForm').addEventListener('click', function(e){
+    //ID가 7글자 미만이면 메시지 표시
+    if(document.querySelector('.peopleID').value.length < 7){
+        rating.showMessage('글자가 너무 적습니다');
+        return false;
+        alert("아이디는 최소 5글자 이상 적어주세요")
+    }
+    //폼 서밋
+});
+</script>
 	<div class="background">
 		<div class="shape"></div>
 		<div class="shape"></div>
 	</div>
-	<form height="1200px" action="joinPro.jsp" method="post">
+	<form height="1200px" action="joinPro.jsp" method="post" class="mainJoinForm">
 		<h3>Join us!</h3>
 
-		<label for="username">아이디</label> <input type="text" placeholder="id" name="id">
+		<label for="username">아이디</label> <input type="text" placeholder="id" name="id" minlength = "5"  class="peopleID">
 		<label for="password">비밀번호</label> <input type="password" placeholder="Password" name="pw">
 		<label for="password">비밀번호 확인</label> <input type="password" placeholder="Confirm Password!" name="pw1">
 		<label for="name">이름</label> <input type="text" name="name">
@@ -198,7 +216,7 @@ button {
 			</tr>
 			<tr id=tr>
 				<td width="165" align="center">
-					<input type="radio" id="gender" name="gender" value="남자" style="width:15px; height:15px"/><span>남성</span>
+					<input type="radio" id="gender" name="gender" value="남자" checked="checked" style="width:15px; height:15px"/><span>남성</span>
    				</td>
    				<td width="165" align="center">
 			    	<input type="radio" id="gender" name="gender" value="여자" style="width:15px; height:15px"/><span>여성</span>

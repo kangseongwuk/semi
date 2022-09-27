@@ -32,26 +32,22 @@ public class rewordDAO {
 	}
 	
 	/* 평점 평균 구하기 */
-	public rewordBean getGrade_Avg(int rno) {
+	public rewordBean getGrade_avg(String mno) {
 		
-		rewordBean rbean = new rewordBean();
+		rewordBean rBean = new rewordBean();
 		
 		try {
 			getConnection();
 
-			String sql = "select avg(grade) from reword where rno = ?";
+			String sql = "select round(avg(grade), 1) from reword where mno = ?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rno);
+			pstmt.setString(1, mno);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 
-				rbean.setRno(rs.getInt(1));
-				rbean.setMno(rs.getString(2));
-				rbean.setTitle(rs.getString(3));
-				rbean.setGrade(rs.getInt(4));
-				rbean.setWriting(rs.getString(5));
+				rBean.setGrade_avg(rs.getDouble(1));
 
 			}
 			if (conn != null) {
@@ -61,12 +57,44 @@ public class rewordDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rbean;
+		return rBean;
 	}
 		
-	/* 평점 평균 반영하기 */
-	//public double updateGrade(UpdateReplyDTO dto);
+	/* mno(영화번호)에 대한 rno(댓글목록) 구하기 */
 	
+	public Vector<rewordBean> rewordRnoSelect(String mno) {
+		
+		Vector<rewordBean> rvector = new Vector<>();
+		
+		try {
+			getConnection();
+			
+			String sql = "select grade, writing from reword where mno = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mno);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				rewordBean rBean3 = new rewordBean();
+
+				rBean3.setGrade(rs.getDouble(1));
+				rBean3.setWriting(rs.getString(2));
+
+				rvector.add(rBean3);
+			}
+			if (conn != null) {
+				conn.commit();
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rvector;
+	}
+	
+	/* 댓글 삽입 */
 	public void rewordinsert(rewordBean rbean) {
 		
 		try {
