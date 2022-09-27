@@ -20,7 +20,7 @@
     display: none; /* 라디오박스 감춤 */
 }
 .rewordform label{
-    font-size: 60px; /* 별 크기 */
+    font-size: 30px; /* 별 크기 */
     color: transparent; /* 기존 별 컬러 제거 */
     text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
 }
@@ -54,14 +54,11 @@
 	movieBean mBean = mdao.oneselectMovie(mno);
 %>
 	<form action="rewordinsertPro.jsp" method="post" class="rewordform" id="myform">
-               <div>
-
-                  <h4>영화에 대한 코멘트를 남겨주세요!</h4>
-                  <div>
+               <div style="display: inline-block;">
+				<br>
+                  <h5>영화에 대한 코멘트를 남겨주세요!</h5>
                      <input type="hidden" name="mno" value="<%=mBean.getMno() %>">
                      <input type="hidden" name="title" value="<%=mBean.getTitle() %>">
-                  </div>
-                  
                    <div class="radio_box">
                        <!-- <legend>별점</legend> -->
                      <input type="radio" name="grade" value="5" id="star1"><label for="star1">★</label> 
@@ -70,18 +67,14 @@
                      <input type="radio" name="grade" value="2" id="star4"><label for="star4">★</label> 
                      <input type="radio" name="grade" value="1" id="star5"><label for="star5">★</label>
                   </div>
-                      
-                  
                   <br>
                   
                   <div>
-                     <textarea name="writing" placeholder="영화는 어떠셨나요?" rows="4" style="width:500px;"></textarea>
+                     <textarea name="writing" placeholder="영화는 어떠셨나요?" rows="2" style="width:500px;"></textarea>
+                  <div style="display: inline-block;">
+                     <button type="submit" class="btn btn-light">입력</button><br><br>
+                    <!--  <button type="reset" class="btn btn-light">취소</button><br> -->
                   </div>
-                  <br>
-                  
-                  <div>
-                     <button type="submit">입력</button>
-                     <button type="reset">취소</button>
                   </div>
                </div>
                   <!-- <legend>별점 선택</legend> -->
