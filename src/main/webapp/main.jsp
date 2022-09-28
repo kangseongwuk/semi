@@ -195,7 +195,7 @@ function loginC() {
 					
 				
 					if(center == null){
-						center = "body.jsp";
+						center = "test.jsp";
 					}
 				%>
  				<div class="wrap" onclick="loginC()">

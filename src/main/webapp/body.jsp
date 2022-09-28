@@ -121,7 +121,8 @@ String id = (String)session.getAttribute("id");
 
         <!-- <div id="mask"></div> -->
         <div style="width:310px;display:inline-block;">
-<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a></div>
+<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+	</div>
    		<%-- <a href="#" class="openMask"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a> --%>
 
 
