@@ -15,10 +15,9 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = request.getParameter("id");
 
 	double grade = Integer.parseInt(request.getParameter("grade"));
-	String mno = request.getParameter("mno");
-	String title =  request.getParameter("title");
 	
 	rewordDAO rdao = new rewordDAO();
 	rdao.rewordinsert(rBean);

@@ -69,7 +69,7 @@ public class rewordDAO {
 		try {
 			getConnection();
 			
-			String sql = "select grade, writing from reword where mno = ?";
+			String sql = "select id, grade, writing from reword where mno = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mno);
@@ -79,8 +79,9 @@ public class rewordDAO {
 				
 				rewordBean rBean3 = new rewordBean();
 
-				rBean3.setGrade(rs.getDouble(1));
-				rBean3.setWriting(rs.getString(2));
+				rBean3.setId(rs.getString(1));
+				rBean3.setGrade(rs.getDouble(2));
+				rBean3.setWriting(rs.getString(3));
 
 				rvector.add(rBean3);
 			}
@@ -95,20 +96,20 @@ public class rewordDAO {
 	}
 	
 	/* 댓글 삽입 */
-	public void rewordinsert(rewordBean rbean) {
+	public void rewordinsert(rewordBean rBean) {
 		
 		try {
 				getConnection();
 				
-			String sql = "insert into reword values(reword_num.nextval, ?, ?, ?, ?)";
+			String sql = "insert into reword values(reword_num.nextval, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			//pstmt.setInt(1, rBean.getRno());
-			pstmt.setString(1, rbean.getMno());
-			pstmt.setString(2, rbean.getTitle());
-			pstmt.setDouble(3, rbean.getGrade());
-			pstmt.setString(4, rbean.getWriting());
+			pstmt.setString(1, rBean.getMno());
+			pstmt.setString(2, rBean.getId());
+			pstmt.setString(3, rBean.getTitle());
+			pstmt.setDouble(4, rBean.getGrade());
+			pstmt.setString(5, rBean.getWriting());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e){
@@ -135,9 +136,10 @@ public class rewordDAO {
 
 				rbean.setRno(rs.getInt(1));
 				rbean.setMno(rs.getString(2));
-				rbean.setTitle(rs.getString(3));
-				rbean.setGrade(rs.getInt(4));
-				rbean.setWriting(rs.getString(5));
+				rbean.setId(rs.getString(3));
+				rbean.setTitle(rs.getString(4));
+				rbean.setGrade(rs.getInt(5));
+				rbean.setWriting(rs.getString(6));
 
 				rvec.add(rbean);
 			}
@@ -170,9 +172,10 @@ public class rewordDAO {
 
 				rbean.setRno(rs.getInt(1));
 				rbean.setMno(rs.getString(2));
-				rbean.setTitle(rs.getString(3));
-				rbean.setGrade(rs.getInt(4));
-				rbean.setWriting(rs.getString(5));
+				rbean.setId(rs.getString(3));
+				rbean.setTitle(rs.getString(4));
+				rbean.setGrade(rs.getInt(5));
+				rbean.setWriting(rs.getString(6));
 
 			}
 			if (conn != null) {
@@ -221,7 +224,7 @@ public class rewordDAO {
 			getConnection();
 
 			String sql = "delete from reword where rno = ?";
-
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rno);
 			pstmt.executeUpdate();
@@ -236,32 +239,63 @@ public class rewordDAO {
 		}
 	}
 
-	//전체댓글 수 파악하여 반환하는 메소드 호출 -- 사용안할예정
-		public int getAllcount(){
-			
-			getConnection();
-			
-			int count = 0;	
-			
-			try {
-				String sql = "select count(*) from reword";
-				
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					count = rs.getInt(1);
-				}
-				if(conn != null) {
-					conn.commit();
-					conn.close();
-				}			
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			return count;		
-		}
-		
+	
 		
 		//
+		
+		// mno에 해당하는 rno 호출 메소드
+		public rewordBean findRno(String mno) {
+
+			rewordBean rbean = new rewordBean();
+
+			try {
+				getConnection();
+
+				String sql = "select rno from reword where mno = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mno);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+
+					rbean.setRno(rs.getInt(1));
+
+				}
+				if (conn != null) {
+					conn.commit();
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rbean;
+		}
+		
+		// rno에 해당하는 id 호출 메소드
+		public rewordBean findId(int rno) {
+			
+			rewordBean rbean = new rewordBean();
+			
+			try {
+				getConnection();
+				
+				String sql = "select id from reword where rno = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, rno);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					
+					rbean.setRno(rs.getInt(1));
+					System.out.println(rs.getInt(1));
+					
+				}
+				if (conn != null) {
+					conn.commit();
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rbean;
+		}
 }

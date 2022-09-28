@@ -16,10 +16,16 @@
 		<jsp:setProperty name="rbean" property="*"/></jsp:useBean>
 	
 <%
+	
+	String mno = request.getParameter("mno");
+	int rno = Integer.parseInt(request.getParameter("rno"));
+
+
 	rewordDAO rdao = new rewordDAO();
 	rdao.rewordupdate(rbean);
 	
-	//response.sendRedirect("main.jsp?center=movieDetail.jsp?mno=rbean.getMno() ");
+	//response.sendRedirect("main.jsp?center=movieDetail.jsp?mno="+request.getParameter("mno"));
+	response.sendRedirect("main.jsp?center=body.jsp?mno=");
 %>		
 </body>
 </html>

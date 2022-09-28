@@ -54,7 +54,8 @@ $(document).ready(function(){
 <meta charset="UTF-8">
 <title>body</title>
 <style type="text/css">
-
+.poster_body{
+}
 	.poster{
 		/* position:relative; */
 		border-radius: 7px;
@@ -118,8 +119,9 @@ String id = (String)session.getAttribute("id");
 		movieBean mBean = vec.get(i);
 %>
 
-        <div id="mask"></div>
-<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+        <!-- <div id="mask"></div> -->
+        <div style="width:310px;display:inline-block;">
+<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a></div>
    		<%-- <a href="#" class="openMask"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a> --%>
 
 

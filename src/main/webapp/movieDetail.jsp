@@ -41,14 +41,14 @@ $(document).ready(function(){
     $('.box2 .close').click(function (e) {  
         //링크 기본동작은 작동하지 않도록 한다.
         e.preventDefault();  
-        $('box2').hide();  
+        $('.box2').hide();  
     });      
 
     //검은 막을 눌렀을 때
-    $('.box2').click(function () {  
+/* $('.box2').click(function () {  
         $(this).hide();  
-       /*  $('.window').hide();   */
-    });      
+        $('.window').hide();
+    });   */     
 });
 
 </script>
@@ -85,6 +85,11 @@ table {
 		height: 1050px;
 		border-radius: 7px;
 		z-index: 3;
+		overflow-x: hidden;
+  		 -ms-overflow-style: none;
+	}
+	.box2::-webkit-scrollbar{
+	  display:none;
 	}
     .window{
       display: none;
@@ -92,40 +97,69 @@ table {
       left:15%;
       top:10%;
       z-index:10000;
-    }	
+    }
+    #movieDetail_a{
+    	display: inline-block;
+    	width:300px;
+    	height: 400px;
+    }
+    .close{
+    	color:white;
+    	align-content: right;
+    	font-size: 50px;
+    	height:50px;
+    	width:100px;
+    }
 </style>
 </head>
 <body>
 
 <%
-
-   request.setCharacterEncoding("UTF-8");
-   String id = (String) session.getAttribute("id");
-
-   String mno = request.getParameter("mno");
-   String title = request.getParameter("title");
-
-	   
-
-   rewordDAO rdao = new rewordDAO();
-   
-   //아임무비 평점 구하기
-   rewordBean rBean2 = rdao.getGrade_avg(mno);
-   
-   Vector<rewordBean> rvector = rdao.rewordRnoSelect(mno);
-
-   movieDAO mdao = new movieDAO();
-   movieBean mBean1 = mdao.oneselectMovie(mno);
-   Vector<movieBean> vec = mdao.allselectMovie(); //모든영화정보
+	request.setCharacterEncoding("UTF-8");
+	
+	String id1 = (String) session.getAttribute("id");	
+	String mno = request.getParameter("mno");
+	
+	//댓글정보
+	rewordDAO rdao = new rewordDAO();	
+	rewordBean rBean = rdao.findRno(mno);
+	rewordBean rBean2 = rdao.getGrade_avg(mno);
+	
+	Vector<rewordBean> rvector = rdao.rewordRnoSelect(mno);
+	
+	int rno = rBean.getRno();
+	rewordBean rBean4 = rdao.findRno(mno);
+	String tableid = rBean.getId();
+	System.out.println(tableid);
+	
+	//영화정보
+	movieDAO mdao = new movieDAO();
+	movieBean mBean1 = mdao.oneselectMovie(mno);
+	
+	//모든영화정보
+	Vector<movieBean> vec = mdao.allselectMovie(); 
 %>
+<%   
+	for(int i=0; i < vec.size(); i++){
+		movieBean mBean = vec.get(i);
+   
+%>
+
+<!-- movieDAO 랑 rewordDAO 추가가 필요하며, movie테이블의 url칼럼도 필요함. -->
+<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>" id="movieDetail_a"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+ <div class="box1" style="display: inline-block;" >
+</div>
+<%} %>
 	<div class="box2">
-										<h2 align="center">영화정보 상세 보기</h2>
+		
+										<button class="close">X&nbsp;&nbsp;</button>
+										<br><h2 align="center">영화정보 상세 보기</h2>
 									
 									<div id="bbbb"align="center">
 									      
-									   <table class="table table-striped" border="1" style="text-align: center;color:white; width: 100%;">
-									<tr align="center" style="height: 40;">
-									<td rowspan="5" colspan="2"><img src= "<%=mBean1.getPoster() %>"></td>
+									   <table class="table table-striped" border="1" style="text-align: center;color:white;">
+									<tr align="center">
+									<td rowspan="5" colspan="2" width="310px" height="410px"><img src= "<%=mBean1.getPoster() %>" width="300px" height="400px"></td>
 									<td>영화제목</td>
 									<td ><%=mBean1.getTitle() %></td>
 									<td>장르</td>
@@ -149,24 +183,13 @@ table {
 								<jsp:include page="rewordinsert.jsp"/>
 
 
-
-
-
-									<table>   
-									      <tr style="height: 40; ">
-									<td colspan="4">
-									<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?mno=<%=mBean1.getMno() %>'" class="btn btn-light">수정하기</button>&nbsp;&nbsp;
-									<button onclick="location.href='main.jsp?center=rewordDelete.jsp?mno=<%=mBean1.getMno() %>'" class="btn btn-light">삭제하기</button>&nbsp;&nbsp;
-									<button class="btn btn-light" class="close" >&nbsp;창닫기&nbsp;&nbsp;</button>
-									      </td>
-									   </tr>
-									</table>
 									<table  class="table table-striped" border="1" style="text-align: center;color:white; width: 100%;">
 									<tr>
-									   <td>아임무비 평점</td>
+									   <td colspan="2">아임무비 평점</td>
 									   <td colspan="3" align="center"><h3><%=rBean2.getGrade_avg() %></h3></td>
 									</tr>   
 									<tr align="center" style="height: 40;">
+									<td>작성자</td>
 									   <td>평점</td>
 									   <td colspan="5">한줄평</td>
 									</tr>
@@ -179,28 +202,30 @@ table {
 									<tr height="40" align="center">
 									   <td>
 									      <%=rBean3.getGrade() %>
-									</td>
-									<td colspan="4">
-									   <%=rBean3.getWriting() %>
-									   </td>
+										</td>
+									   <td>
+									      <%=rBean3.getId()%>
+										</td>
+										<td colspan="4">
+									   		<%=rBean3.getWriting() %>&nbsp;&nbsp;&nbsp;&nbsp;
+									   <%
+									   		if (id1.equals(rBean3.getId())){
+									   	%>		
+									   			<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?rno=<%=rBean.getRno() %>&id=<%=rBean.getId() %>'" class="btn btn-light" style="align:right">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+												<button onclick="location.href='main.jsp?center=rewordDeletePro.jsp?rno=<%=rBean.getRno() %>&id=<%=rBean.getId() %>'" class="btn btn-light" style="align:right">삭제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;	
+									   <% 	} else if(id1.equals("admin")){
+										%>  	<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?rno=<%=rBean.getRno() %>&id=<%=rBean.getId() %>'" class="btn btn-light" style="align:right">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+												<button onclick="location.href='main.jsp?center=rewordDeletePro.jsp?rno=<%=rBean.getRno() %>&id=<%=rBean.getId() %>'" class="btn btn-light" style="align:right">삭제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+										   
+									  	<%  }%>	
+										   
+									   </td>	
 									</tr>
 									<%} %>   
-									</table>
-									
+									</table>									
 </div>
-<%   
-	for(int i=0; i < vec.size(); i++){
-		movieBean mBean = vec.get(i);
-   
-%>
-
-<!-- movieDAO 랑 rewordDAO 추가가 필요하며, movie테이블의 url칼럼도 필요함. -->
 	</div>
-	<div class="poster_div">
- <div class="box1" style="display: inline-block;" >
-</div></div>
-<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
-<%} %>
+
    		<%-- <a href="#" class="openMask"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a> --%>
 
 

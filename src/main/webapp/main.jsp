@@ -8,6 +8,18 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>1'M MOVIE</title>
+<script type="text/javascript">
+
+function loginC() {
+	let id = "${id}";
+	if (id == "") {
+		alert("로그인 후 사용하실 수 있습니다.");
+		location.href="Login.jsp";
+		$('a').prop('href', 'Login.jsp');
+	};
+};
+</script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
    
   <!-- Required meta tags -->
@@ -63,42 +75,46 @@
    <!-- session을 이용한 로그인 처리 -->
    <%
    String id = (String) session.getAttribute("id");
-
+   String center = request.getParameter("center");
 
       %>   
+ <!-- 서브메뉴   2022.09.28 수정-->   
+      
       <div class="wrapper" >
-	    <nav id="sidebar" style="color: white;height:200vh;">
-	    <div className="sidebar-skeleton"></div>
-	      <div class="sidebar-header">
-	      <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
-	      </div>
-	      <ul class="lisst-unstyled components">
-	        <li><a href="main.jsp?center=random.jsp">추천</a></li>
-	        <li class="active">
-	          <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장르별</a>
-	          <ul class="collapse lisst-unstyled" id="foodSubmenu">
-	            <li><a href="#">코믹</a></li>
-	            <li><a href="#">멜로</a></li>
-	            <li><a href="#">액션</a></li>
-	            <li><a href="#">호러</a></li>
-	            <li><a href="#">스릴러</a></li>
-	            <li><a href="#">드라마</a></li>
-	            <li><a href="#">스포츠</a></li>
-	            <li><a href="#">SF</a></li>
-	          </ul>
-	        </li>
-	        <li>
-	          <a href="#">찜목록</a>
-	        </li>
-	        <li>
-	          <a href="main.jsp?center=boardList.jsp">고객센터</a>
-	        </li>
-	        <li>
-	          <a href="movieJoin.jsp">영화추가</a>
-	          <a href="main.jsp?center=test.jsp">테스트</a>
-	        </li>
-	      </ul>
-	    </nav>
+       <nav id="sidebar" style="color: white">
+       <div className="sidebar-skeleton"></div>
+       
+         <div class="sidebar-header">
+         <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
+         </div>
+         <ul class="lisst-unstyled components">
+           <li><a href="main.jsp?center=random.jsp">추천</a></li>
+           <li class="active" >
+             <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장르별</a>
+             <ul class="collapse lisst-unstyled" id="foodSubmenu" >
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=코미디">코미디</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=멜로">멜로</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=액션">액션</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=호러">호러</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=스릴러">스릴러</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=드라마">드라마</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=스포츠">스포츠</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=SF">SF</a></li>
+               
+             </ul>
+           </li>
+           <li>
+             <a href="#">찜목록</a>
+           </li>
+           <li>
+             <a href="main.jsp?center=boardList.jsp">고객센터</a>
+           </li>
+           <li>
+             <a href="movieJoin.jsp">영화추가</a>
+             <a href="main.jsp?center=test.jsp">테스트</a>
+           </li>
+         </ul>
+       </nav>
     
    <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -109,28 +125,27 @@
         </div>
       </nav>
       
-          <!-- 검색바   2022.09.26 수정-->  
+          <!-- 검색바   2022.09.28 수정-->  
    
    
          <div class="container">
-
-    <form action="searchPro.jsp" method="get" >
+	
+    <form  name="title" action="searchPro.jsp"   >
                     <!--  <div class="row height d-flex justify-content-center align-items-center"> -->
-
+			
                       <div class="col-md-8" >
 
                         <div class="search" >
                           <i class="fa fa-search"></i>
              
                          
-                          <input type="text" name="title" class="form-control"  placeholder="영화를 검색해보세요" style="color:gray;">
-                          <button type="submit" class="btn btn-primary" style="border-color:rgb(51,51,51)" onclick="location.href='main.jsp?center=searchPro.jsp'">Search</button>
+                          <input type="search" name="title" class="form-control"  placeholder="Have a question? Ask Now">
+                            <button type="submit" class="btn btn-primary" style="border-color:rgb(51,51,51)" value="title" >Search</button>
                        
                         </div>
                         
                       </div>
                       
-                   <!--  </div> -->
            </form>
                 </div>
 
@@ -175,18 +190,18 @@
          </div>
       </nav>
       </header>
-	    <!-- <div id="content"> -->
-				<div class="wrap">
+	    <div id="content">
 				<%
-					String center = request.getParameter("center");
+					
 				
 					if(center == null){
 						center = "body.jsp";
 					}
 				%>
+ 				<div class="wrap" onclick="loginC()">
 				<jsp:include page="<%=center %>"/>
 				</div>
-	      <!-- </div> -->
+	      </div>
      
 <script type="text/javascript"
 src="https://pagead2.googlesyndication.com/pagead/show_ads.js">

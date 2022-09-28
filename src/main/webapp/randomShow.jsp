@@ -3,7 +3,6 @@
 <%@ page import="movie.movieDAO"%>
 <%@ page import="movie.movieBean"%>
 <%@ page import="java.util.Vector"%>  
-<%	request.setCharacterEncoding("UTF-8");%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,23 +48,29 @@
 	
 </style>
 <body>
-<jsp:useBean id="mBean" class="movie.movieBean">
-		<jsp:setProperty name="mBean" property="*"/></jsp:useBean>
+
 
 <%
+	request.setCharacterEncoding("UTF-8");
+    String genre = request.getParameter("genre");
 
-   request.setCharacterEncoding("UTF-8");
-   String genre = request.getParameter("genre");
+	movieDAO mdao = new movieDAO();
 
+	Vector<movieBean> vec = mdao.RandomselectMovie(genre);
 
-
-	
+	for(int i=0; i < vec.size(); i++){
 		
-		
+		movieBean mBean3 = vec.get(i);
 %>
-	     <script>
-   location.href='main.jsp?center=randomShow.jsp?genre=<%=genre%>'   				
-	   </script>
+	   <span class="box2">제목: <%=mBean3.getTitle()%><br>
+	    				장르: <%=mBean3.getGenre()%><br>
+	    				국내외: <%=mBean3.getCountry()%><br>
+	    				런타임: <%=mBean3.getRuntime() %></span>
+	    				
+      <div  class="box1">
+        <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean3.getMno()%>"><img class="poster"src="<%=mBean3.getPoster() %>" width="300px" height="400px"></a>
+	</div>
+<%}%>
 
 </body>
 </html>

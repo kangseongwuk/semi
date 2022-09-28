@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="movie.rewordDAO"%>
 <%@ page import="movie.rewordBean"%>
-<%	request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +11,16 @@
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
 
-		<jsp:useBean id="rBean" class="movie.rewordBean">
-			<jsp:setProperty name="rBean" property="*"/>
-		</jsp:useBean>
 <%
-	
+	String id = (String) session.getAttribute("id");
+	String mno = request.getParameter("mno");
 	int rno = Integer.parseInt(request.getParameter("rno"));
+	System.out.println(rno);
 
 	rewordDAO rdao = new rewordDAO();
 	rdao.reworddelete(rno);
 	
-	//response.sendRedirect("main.jsp?center=movieDetail.jsp?mno=rBean.getMno() ");
+	response.sendRedirect("main.jsp?center=body.jsp");
 	
 %>
 </body>

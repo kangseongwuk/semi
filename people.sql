@@ -69,10 +69,11 @@ create table movie(
     actor varchar2(500) not null,
     story varchar2(2000) not null,
     poster varchar2(500) not null,
-    love number(2,1) not null
+    love number(2,1) not null,
+    url varchar2(2000) not null
 );    
         --12개   ROUND("값", "자리수")
-insert into movie values('23138','죽어도 좋은 경험','드라마','국내','95분','청소년 관람불가','2021-07-15','김기영','윤여정, 이탐미, 현길수','수로 아이를 잃은 ‘여정’은 우연히 만난 ‘명자’가 남편의 외도로  억울하게 이혼당했다는 사실을 알게 된다.   모든 비밀과 진실을 알고 있는 ‘여정’은 ‘명자’와 치밀한 계획 아래  서로 상대방의 남편을 살해한다는 범죄를 공모한다.   독을 품은 두 여자의 광기 어린 복수극이 시작된다!','/images/movie.png','7.9');
+
 
     drop table movie;
     
@@ -80,22 +81,13 @@ insert into movie values('23138','죽어도 좋은 경험','드라마','국내',
 
 -----------
 
---table reword
-  create table reword(
-   rno varchar2(7) primary key not null,
-   mno varchar2(7)  not null,
-   title varchar2(500) not null,
-   grade number(2,1) not null,
-   writing varchar2(1000) not null
-);
 
-
-drop table reword;
 
 --다시 만든 버전
 create table reword(
     rno number primary key,
     mno varchar2(7)  not null,
+    ID   varchar2(50) not null,
     title varchar2(500) not null, --mno, title 겹치는 것 아닌가?
     grade number(2,1) not null,
     writing varchar2(1000) not null
@@ -103,6 +95,7 @@ create table reword(
 );
 
 select * from reword;
+drop table reword;
 
 --reword 시퀀스
 create sequence reword_num
@@ -118,7 +111,7 @@ drop sequence reword_num;
 alter table reword
 add constraint fk_title foreign key (mno) references movie(mno);
 
-insert into reword values('1','23138','죽어도 좋은 경험', 5,'재미있어요');
+insert into reword values('1','23138','admin','죽어도 좋은 경험', 5,'재미있어요');
 
 
 
@@ -135,6 +128,7 @@ enable constraint fk_title;
 
 --테이블 모든 데이터 삭제
 truncate table reword;
+truncate table movie;
 
 --테이블에 외래키 제약조건 삭제
 alter table reword

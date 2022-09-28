@@ -6,7 +6,11 @@
 <%	request.setCharacterEncoding("UTF-8");%>    
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="jquery-1.12.0.min.js"></script>
+<script src="js/bootstrap.js"></script>	
 <head>
+
 <meta charset="UTF-8">
 <title>게시판 댓글 쓰기(저장)</title>
 </head>
@@ -49,23 +53,34 @@
 	
 </style>
 <body>
-<jsp:useBean id="mBean" class="movie.movieBean">
-		<jsp:setProperty name="mBean" property="*"/></jsp:useBean>
+
 
 <%
+	request.setCharacterEncoding("UTF-8");
+    String genre = request.getParameter("genre");
+   
 
-   request.setCharacterEncoding("UTF-8");
-   String genre = request.getParameter("genre");
+	movieDAO mdao = new movieDAO();
 
+	Vector<movieBean> vec3 = mdao.GenreselectMovie(genre);
 
-
-	
+	for(int i=0; i < vec3.size(); i++){
 		
-		
-%>
-	     <script>
-   location.href='main.jsp?center=randomShow.jsp?genre=<%=genre%>'   				
-	   </script>
+		movieBean gBean = vec3.get(i);
+%> 
+	   <span class="box2">제목: <%=gBean.getTitle()%><br>
+	    				장르: <%=gBean.getGenre()%><br>
+	    	 			국내외: <%=gBean.getCountry()%><br>
+	    				런타임: <%=gBean.getRuntime() %></span>   
+	 
+        
+        <div  class="box1">
+        <a href="main.jsp?center=movieDetail.jsp?mno=<%=gBean.getMno()%>"><img class="poster"src="<%=gBean.getPoster() %>" width="300px" height="400px"></a>
+	</div>
+        <%} %>
+
+
+
 
 </body>
 </html>

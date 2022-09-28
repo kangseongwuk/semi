@@ -144,82 +144,116 @@ public class movieDAO {
 	
 	//추천페이지 랜덤값
 		//랜덤 추천 
-	      public Vector<movieBean> RandomselectMovie(String Genre) {
+public Vector<movieBean> RandomselectMovie(String Genre) {
 
-	         
+            
 
-	         Vector<movieBean> vec = new Vector<>();
+            Vector<movieBean> vec = new Vector<>();
 
-	         try {
-	            
-	            getConnection();
-	            String sql = "select genre,poster,title,country,runtime from( select* from movie where poster like '.%' order by dbms_random.value ) where genre = ? and rownum<=10";
-	            
-	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, Genre);
-	            
-	              rs = pstmt.executeQuery();
-	             
+            try {
+               
+               getConnection();
+               String sql = "select genre,poster,title,country,runtime from( select* from movie where poster like '.%' order by dbms_random.value ) where genre = ? and rownum<=10";
+               
+               pstmt = conn.prepareStatement(sql);
+               pstmt.setString(1, Genre);
+               
+                 rs = pstmt.executeQuery();
+                
 
-	            while (rs.next()) {
-	               movieBean bean = new movieBean();
+               while (rs.next()) {
+                  movieBean mbean3 = new movieBean();
 
-	               bean.setGenre(rs.getString(1));
-	               bean.setPoster(rs.getString(2));
-	               bean.setTitle(rs.getString(3));
-	               bean.setCountry(rs.getString(4));
-	               bean.setRuntime(rs.getString(5));
-	               vec.add(bean);
-	            }
-	            conn.close();
-	            /*
-	             * if (conn != null) { conn.commit(); }
-	             */         
-	            } catch (Exception e) {
-	            e.printStackTrace();
-	         }
-	         return vec;
-	      }
+                  mbean3.setGenre(rs.getString(1));
+                  mbean3.setPoster(rs.getString(2));
+                  mbean3.setTitle(rs.getString(3));
+                  mbean3.setCountry(rs.getString(4));
+                  mbean3.setRuntime(rs.getString(5));
+                  vec.add(mbean3);
+               }
+               conn.close();
+               /*
+                * if (conn != null) { conn.commit(); }
+                */         
+               } catch (Exception e) {
+               e.printStackTrace();
+            }
+            return vec;
+         }
+        
+         //검색창
+         public Vector<movieBean> searchselectMovie(String title) {
+
+               
+
+               Vector<movieBean> vec2 = new Vector<>();
+
+               try {
+                  
+                  getConnection();
+                  String sql =  "select title,genre,poster,country,runtime from movie where title like ? " ;
+                  
+                  pstmt = conn.prepareStatement(sql);
+                  pstmt.setString(1, "%"+title+"%");
+                  
+                    rs = pstmt.executeQuery();
+                   
+
+                  while (rs.next()) {
+                     movieBean bean = new movieBean();
+                     
+                     bean.setTitle(rs.getString(1));
+                     bean.setGenre(rs.getString(2));
+                     bean.setPoster(rs.getString(3));
+                     bean.setCountry(rs.getString(4));
+                     bean.setRuntime(rs.getString(5));
+                     vec2.add(bean);
+                  }
+                  conn.close();
+                  /*
+                   * if (conn != null) { conn.commit(); }
+                   */         
+                  } catch (Exception e) {
+                  e.printStackTrace();
+               }
+               return vec2;
+            }
 	
-	    //검색창
-	         public Vector<movieBean> searchselectMovie(String title) {
+      // 영화 장르별 검색
+         public Vector<movieBean>  GenreselectMovie(String genre) {
 
-	               
+               
 
-	               Vector<movieBean> vec = new Vector<>();
+               Vector<movieBean> vec3 = new Vector<>();
 
-	               try {
-	                  
-	                  getConnection();
-	                  String sql =  "select title,genre,poster,country,runtime from movie where title like ? " ;
-	                  
-	                  pstmt = conn.prepareStatement(sql);
-	                  pstmt.setString(1, "%"+title+"%");
-	                  
-	                    rs = pstmt.executeQuery();
-	                   
+               try {
+                  
+                  getConnection();
+                  String sql =  "select title,genre,country,runtime,poster from movie where genre = ? ";
+                  
+                  pstmt = conn.prepareStatement(sql);
+                  pstmt.setString(1, genre);
+                  
+                    rs = pstmt.executeQuery();
+                   
 
-	                  while (rs.next()) {
-	                     movieBean bean = new movieBean();
-	                     
-	                     bean.setTitle(rs.getString(1));
-	                     bean.setGenre(rs.getString(2));
-	                     bean.setPoster(rs.getString(3));
-	                     bean.setCountry(rs.getString(4));
-	                     bean.setRuntime(rs.getString(5));
-	                     vec.add(bean);
-	                  }
-	                  conn.close();
-	                  /*
-	                   * if (conn != null) { conn.commit(); }
-	                   */         
-	                  } catch (Exception e) {
-	                  e.printStackTrace();
-	               }
-	               return vec;
-	            }
-	
-	
+                  while (rs.next()) {
+                     movieBean gbean = new movieBean();
+                     
+                     gbean.setTitle(rs.getString(1));
+                     gbean.setGenre(rs.getString(2));
+                     gbean.setCountry(rs.getString(3));
+                     gbean.setRuntime(rs.getString(4));
+                     gbean.setPoster(rs.getString(5));
+                     vec3.add(gbean);
+                  }
+                  conn.close();
+                          
+                  } catch (Exception e) {
+                  e.printStackTrace();
+               }
+               return vec3;
+            }
 	
 	
 	

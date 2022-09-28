@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="movie.rewordDAO"%>
 <%@ page import="movie.rewordBean"%>
@@ -23,10 +23,7 @@ a, a:hover {
 	<%
 	request.setCharacterEncoding("UTF-8");
 	
-	//int id = Integer.parseInt(request.getParameter("id"));
-	
-	String rno1 = "3";//request.getParameter("id");
-	int rno = Integer.parseInt(rno1);
+	int rno = Integer.parseInt(request.getParameter("rno"));
 	
 	rewordDAO rdao = new rewordDAO();
 	rewordBean rBean = rdao.OneSelectreword(rno);
@@ -37,7 +34,7 @@ a, a:hover {
 		<form action="rewordDeletePro.jsp" method="post">
 			<input type="hidden" name="rno" value="<%=rBean.getRno() %>">
 			<input type="submit" class="btn btn-light" value="삭제완료">&nbsp;&nbsp;
-			<input type="button" onclick="location.href='main.jsp?center=movieDetail.jsp?mno=<%=rBean.getMno() %>'"value="영화상세보기" class="btn btn-light">&nbsp;&nbsp;
+			<input type="button" onclick="location.href='main.jsp?center=movieDetail.jsp?mno=<%=rBean.getMno() %>'"value="뒤로가기" class="btn btn-light">&nbsp;&nbsp;
 		</form>
 		</div>
 </body>

@@ -59,21 +59,10 @@
 </head>
 <body>
 
-<%-- <% String Genre = (String)session.getAttribute("Genre");
-   String Poster = (String)session.getAttribute("Poster");
 
-	movieDAO mdao = new movieDAO();
-
-	Vector<movieBean> vec = mdao.RandomselectMovie(Genre);
-	
-	for(int i=0; i < vec.size(); i++){
-		
-		movieBean mBean = vec.get(i);
-		
-		%> --%>
-		 <form action="randomPro.jsp" method="get">
+		 <form action="randomPro.jsp" name="genre">
 	  <div class ="select">
-	  <select class="selectbox" id="selectbox" name="Genre" onchange="chageLangSelect()">
+	  <select class="selectbox" name="genre" onchange="chageLangSelect()">
         <option value="" selected disabled>장르 선택</option>              
         <option value="액션">액션</option>
         <option value="애니메이션">애니메이션</option>
@@ -82,8 +71,8 @@
         <option value="공포">공포</option>
         <option value="뮤지컬">뮤지컬</option>
       </select>
-      	<!-- <input type="submit" value="asdf"> -->
-       <button type="submit" onclick="location.href='main.jsp?center=randomPro.jsp'">선택</button>
+     
+       <button type="submit" value="genre">선택</button>
        </div>
 </form>
 
