@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="movie.rewordDAO"%>
-<%@ page import="movie.rewordBean"%>
+<%@ page import="java.sql.*" %>    
+<%@ page import="movie.movieDAO" %>  
+<%@ page import="movie.movieBean" %>	
+<%@ page import="movie.rewordDAO" %>  
+<%@ page import="movie.rewordBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,13 +43,15 @@
 <body>
 <%
 	request.setCharacterEncoding("UTF-8");
-
+	
+	String mno = request.getParameter("mno");
 	String id = (String) session.getAttribute("id");
-	int rno = Integer.parseInt(request.getParameter("rno"));
 	
 	
 	rewordDAO rdao = new rewordDAO();
-	rewordBean rBean = rdao.OneSelectreword(rno);
+	
+	movieDAO mdao = new movieDAO();	
+	movieBean mBean = mdao.oneselectMovie(mno);
 %>
 	<h2 align="center">게시판 수정 화면</h2>
 	<div align="center">
@@ -62,11 +67,10 @@
                      <textarea name="writing" placeholder="영화는 어떠셨나요?" rows="4" style="width:500px;"></textarea>
                   </div>
 				<div>	
+					<input type="hidden" name="mno" value="<%=mBean.getMno() %>">
 					<input type="hidden" name="id" value="<%=id %>">
-					<input type="hidden" name="rno" value="<%=rBean.getRno() %>">
 					<input type="submit" value="수정완료" class="btn btn-light">&nbsp;&nbsp; 
 					<input type="reset" value="수정취소" class="btn btn-light">&nbsp;&nbsp; 
-					<input type="button" onclick="location.href='main.jsp?center=movieDetail.jsp?mno=<%=rBean.getMno() %>'"value="돌아가기" class="btn btn-light">&nbsp;&nbsp;
 				</div>		 
 		</form>
 	</div>

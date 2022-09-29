@@ -37,10 +37,12 @@ function loginC() {
   
   <title>1'M MOVIE</title>
 
-
 <style>
-.dropbtn {
- 
+.center{
+margin-left: 2%;
+margin-top: 7%;
+width:150vh;
+text-align:center;
 }
 .dropdown {
   position: relative;
@@ -50,9 +52,10 @@ function loginC() {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  right:4%;
 }
 .dropdown-content a {
   color: black;
@@ -67,11 +70,11 @@ function loginC() {
   display: block;
 }
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  /* background-color: #2b9e31; */
 }
 </style>
 </head>
-<body class="body">
+<body>
    <!-- session을 이용한 로그인 처리 -->
    <%
    String id = (String) session.getAttribute("id");
@@ -80,7 +83,7 @@ function loginC() {
       %>   
  <!-- 서브메뉴   2022.09.28 수정-->   
       
-      <div class="wrapper" >
+      <div style="display:inline-flex;">
        <nav id="sidebar" style="color: white">
        <div className="sidebar-skeleton"></div>
        
@@ -104,13 +107,12 @@ function loginC() {
              </ul>
            </li>
            <li>
-             <a href="#">찜목록</a>
+             <a href="main.jsp?center=like.jsp">찜목록</a>
            </li>
            <li>
              <a href="main.jsp?center=boardList.jsp">고객센터</a>
            </li>
            <li>
-             <a href="movieJoin.jsp">영화추가</a>
              <a href="main.jsp?center=test.jsp">테스트</a>
            </li>
          </ul>
@@ -165,15 +167,24 @@ function loginC() {
          <%
          }else if(id.equals("admin")){
             %>
-               <a href="main.jsp?center=peopleList.jsp">관리자모드 접속(회원 목록 보기)</a>
-               <form action="Logout.jsp" method="post">
-              <input type="submit" value="로그아웃">
-              </form>
+ 			<h4 style="color:#40c749;margin-right:15%;margin-top:5%;margin-bottom:1%;"><strong>관리자</strong></h4> 
+              <div class="dropdown">
+             <button class="btn btn-dark dropbtn" style="padding-bottom: 1%;"><i class="fas fa-bars"></i><span>페이지 관리</span></button>
+                   <div class="dropdown-content">
+                        <a href="main.jsp?center=peopleList.jsp">회원목록</a> 
+                        <a href="movieJoin.jsp">영화추가</a>
+                       <a href="#" onclick="return Logout_form()">로그아웃</a>
+                  </div>
+              </div>
+                    <form id="Logout" action="Logout.jsp" method="post" style = "display:none">
+                  <input type="submit" value="로그아웃">
+                  </form>
          <%
          }else if(id != null){%>
          <a href="Login.jsp"></a>      	
+	          	<h4 style="color:#40c749;margin-right:15%;margin-top:5%;"><strong><%=id %></strong></h4> 
 	           <div class="dropdown">
-		    	<button class="dropbtn">MY PAGE</button>
+		    	<button class="btn btn-dark dropbtn" style="padding-bottom: 1%;"><i class="fas fa-bars"></i><span>MY PAGE</span></button>
 				   	 <div class="dropdown-content">
 				     	    <a href="main.jsp?center=mypageDetail.jsp?id=<%=id%>">회원목록</a> 
 				     	    <a href="#"></a>
@@ -183,30 +194,32 @@ function loginC() {
 					  	<form id="Logout" action="Logout.jsp" method="post" style = "display:none">
 						<input type="submit" value="로그아웃">
 						</form>
-	          	<span><%=id %></span>&nbsp;&nbsp; 
 							            
 			         <%} %>
 
          </div>
       </nav>
       </header>
-	    <div id="content">
+      
+      <section class="center">
 				<%
 					
 				
 					if(center == null){
-						center = "test.jsp";
+						center = "body.jsp";
 					}
 				%>
- 				<div class="wrap" onclick="loginC()">
 				<jsp:include page="<%=center %>"/>
+<!-- 	    <div id="content">
+ 				<div class="wrap" onclick="loginC()">
 				</div>
-	      </div>
+	      </div> -->
+     </section>
      
+     </div>
 <script type="text/javascript"
 src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
-</div>
   <!-- wrapper and -->
 
 

@@ -62,14 +62,14 @@ public class rewordDAO {
 		
 	/* mno(영화번호)에 대한 rno(댓글목록) 구하기 */
 	
-	public Vector<rewordBean> rewordRnoSelect(String mno) {
+	public Vector<rewordBean> rewordSelectEach(String mno) {
 		
 		Vector<rewordBean> rvector = new Vector<>();
 		
 		try {
 			getConnection();
 			
-			String sql = "select id, grade, writing from reword where mno = ?";
+			String sql = "select id, grade, writing from reword  where mno = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mno);
@@ -101,7 +101,7 @@ public class rewordDAO {
 		try {
 				getConnection();
 				
-			String sql = "insert into reword values(reword_num.nextval, ?, ?, ?, ?, ?)";
+			String sql = "insert into reword values(?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -114,6 +114,7 @@ public class rewordDAO {
 			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
+			System.out.println("아이디가 중복");
 		}
 	}
 	
@@ -125,7 +126,7 @@ public class rewordDAO {
 		Vector<rewordBean> rvec = new Vector<>();
 
 		try {
-			String sql = "select * from reword order by rno desc, mno desc";
+			String sql = "select * from reword";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -134,12 +135,11 @@ public class rewordDAO {
 			while (rs.next()) {
 				rewordBean rbean = new rewordBean();
 
-				rbean.setRno(rs.getInt(1));
-				rbean.setMno(rs.getString(2));
-				rbean.setId(rs.getString(3));
-				rbean.setTitle(rs.getString(4));
-				rbean.setGrade(rs.getInt(5));
-				rbean.setWriting(rs.getString(6));
+				rbean.setMno(rs.getString(1));
+				rbean.setId(rs.getString(2));
+				rbean.setTitle(rs.getString(3));
+				rbean.setGrade(rs.getInt(4));
+				rbean.setWriting(rs.getString(5));
 
 				rvec.add(rbean);
 			}
@@ -156,26 +156,25 @@ public class rewordDAO {
 	
 
 	// 수정용 반환 댓글 메소드 호출
-	public rewordBean OneSelectreword(int rno) {
+	public rewordBean OneSelectreword(String id) {
 
 		rewordBean rbean = new rewordBean();
 
 		try {
 			getConnection();
 
-			String sql = "select * from reword where rno = ?";
+			String sql = "select * from reword where id = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rno);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 
-				rbean.setRno(rs.getInt(1));
-				rbean.setMno(rs.getString(2));
-				rbean.setId(rs.getString(3));
-				rbean.setTitle(rs.getString(4));
-				rbean.setGrade(rs.getInt(5));
-				rbean.setWriting(rs.getString(6));
+				rbean.setMno(rs.getString(1));
+				rbean.setId(rs.getString(2));
+				rbean.setTitle(rs.getString(3));
+				rbean.setGrade(rs.getInt(4));
+				rbean.setWriting(rs.getString(5));
 
 			}
 			if (conn != null) {
@@ -191,18 +190,19 @@ public class rewordDAO {
 
 
 	//
-	public void rewordupdate(rewordBean rbean) {
+	public void rewordUpdate(rewordBean rbean) {
 
 		try {
 			getConnection();
 
-			String sql = "update reword set grade = ?, writing = ? where rno = ?";
+			String sql = "update reword set grade = ?, writing = ? where mno = ? and id = ?";
 
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setDouble(1, rbean.getGrade());
 			pstmt.setString(2, rbean.getWriting());
-			pstmt.setInt(3, rbean.getRno());
+			pstmt.setString(3, rbean.getMno());
+			pstmt.setString(4, rbean.getId());
 
 			pstmt.executeUpdate();
 
@@ -218,15 +218,16 @@ public class rewordDAO {
 	}
 
 	// 삭제 메소드 호출
-	public void reworddelete(int rno) {
+	public void reworddelete(String id, String title) {
 
 		try {
 			getConnection();
 
-			String sql = "delete from reword where rno = ?";
+			String sql = "delete from reword where id = ? and title = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rno);
+			pstmt.setString(1, id);
+			pstmt.setString(2, title);
 			pstmt.executeUpdate();
 
 			if (conn != null) {
@@ -243,50 +244,22 @@ public class rewordDAO {
 		
 		//
 		
-		// mno에 해당하는 rno 호출 메소드
-		public rewordBean findRno(String mno) {
-
+		// Mno에 해당하는 id 호출 메소드
+		public rewordBean findId(String mno) {
+			
 			rewordBean rbean = new rewordBean();
-
+			
 			try {
 				getConnection();
-
-				String sql = "select rno from reword where mno = ?";
+					
+				String sql = "select id from reword where mno = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mno);
 				rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-
-					rbean.setRno(rs.getInt(1));
-
-				}
-				if (conn != null) {
-					conn.commit();
-					conn.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return rbean;
-		}
-		
-		// rno에 해당하는 id 호출 메소드
-		public rewordBean findId(int rno) {
-			
-			rewordBean rbean = new rewordBean();
-			
-			try {
-				getConnection();
-				
-				String sql = "select id from reword where rno = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, rno);
-				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					
-					rbean.setRno(rs.getInt(1));
-					System.out.println(rs.getInt(1));
+					rbean.setId(rs.getString(1));
+					System.out.println(rs.getString(1));
 					
 				}
 				if (conn != null) {

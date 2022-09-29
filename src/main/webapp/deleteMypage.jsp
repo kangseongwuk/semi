@@ -16,18 +16,18 @@ table{
 }
 
 a, a:hover {
-		color:#000000;
+		color:inherit;
 		text-decoration:none;}
 </style>
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
-<body style="margin-top: 100px;">
+<body>
 <h2 align="center">회원정보 삭제 화면</h2>
 	<div align="center"> 
 	<form action="deleteProMypage.jsp" method="post">
-	<table align="center" class="table table-bordered" border="1" style="width:20%;">
-		<tr style="height: 40;">
+	<table align="center" class="table table-bordered" border="1" style="width:30%;">
+		<tr align="center" style="height: 40;">
 			<td width="100">아이디</td>
 			<td><%=request.getParameter("id") %></td> 
 		</tr>				
@@ -38,10 +38,10 @@ a, a:hover {
 			</td>
 		</tr>		
 		<tr style="height: 60;">
-			<td colspan="2"> 
+			<td colspan="2" align="center"> 
 				<input type="hidden" name="id" value="<%=request.getParameter("id") %>">
 				<input type="submit" value="회원정보삭제">&nbsp;&nbsp;		
-				<input type="button" value="회원가입" onclick="location.href='main.jsp?center=join.jsp?'"/>
+				<input type="button" value="메인페이지" onclick="location.href='main.jsp?center=body.jsp?'"/>
 			</td>	
 		</tr>		
 	</table>	

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 public class movieDAO {
@@ -153,7 +154,7 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
             try {
                
                getConnection();
-               String sql = "select genre,poster,title,country,runtime from( select* from movie where poster like '.%' order by dbms_random.value ) where genre = ? and rownum<=10";
+               String sql = "select genre,poster,title,country,runtime,mno from( select* from movie where poster like '.%' order by dbms_random.value ) where genre = ? and rownum<=1";
                
                pstmt = conn.prepareStatement(sql);
                pstmt.setString(1, Genre);
@@ -169,6 +170,7 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
                   mbean3.setTitle(rs.getString(3));
                   mbean3.setCountry(rs.getString(4));
                   mbean3.setRuntime(rs.getString(5));
+                  mbean3.setMno(rs.getString(6));
                   vec.add(mbean3);
                }
                conn.close();
@@ -191,7 +193,7 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
                try {
                   
                   getConnection();
-                  String sql =  "select title,genre,poster,country,runtime from movie where title like ? " ;
+                  String sql =  "select title,genre,poster,country,runtime,mno from movie where title like ? " ;
                   
                   pstmt = conn.prepareStatement(sql);
                   pstmt.setString(1, "%"+title+"%");
@@ -207,6 +209,7 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
                      bean.setPoster(rs.getString(3));
                      bean.setCountry(rs.getString(4));
                      bean.setRuntime(rs.getString(5));
+                     bean.setMno(rs.getString(6));
                      vec2.add(bean);
                   }
                   conn.close();
@@ -229,7 +232,7 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
                try {
                   
                   getConnection();
-                  String sql =  "select title,genre,country,runtime,poster from movie where genre = ? ";
+                  String sql =  "select title,genre,country,runtime,poster,mno from movie where genre = ? ";
                   
                   pstmt = conn.prepareStatement(sql);
                   pstmt.setString(1, genre);
@@ -245,6 +248,7 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
                      gbean.setCountry(rs.getString(3));
                      gbean.setRuntime(rs.getString(4));
                      gbean.setPoster(rs.getString(5));
+                     gbean.setMno(rs.getString(6));
                      vec3.add(gbean);
                   }
                   conn.close();
@@ -255,7 +259,5 @@ public Vector<movieBean> RandomselectMovie(String Genre) {
                return vec3;
             }
 	
-	
-	
-	
+
 }

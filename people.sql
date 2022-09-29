@@ -85,33 +85,22 @@ create table movie(
 
 --다시 만든 버전
 create table reword(
-    rno number primary key,
     mno varchar2(7)  not null,
     ID   varchar2(50) not null,
     title varchar2(500) not null, --mno, title 겹치는 것 아닌가?
     grade number(2,1) not null,
     writing varchar2(1000) not null
-    --FOREIGN KEY (title) REFERENCES movie(mno)
 );
 
 select * from reword;
 drop table reword;
 
---reword 시퀀스
-create sequence reword_num
-   start with 2
-   increment by 1
-   minvalue 1
-   maxvalue 1000
-   cycle;
-   
-drop sequence reword_num;   
-   
+
 -- foreign key 연결
 alter table reword
 add constraint fk_title foreign key (mno) references movie(mno);
 
-insert into reword values('1','23138','admin','죽어도 좋은 경험', 5,'재미있어요');
+insert into reword values('23138','admin','죽어도 좋은 경험', 5,'재미있어요');
 
 
 
@@ -137,3 +126,43 @@ drop constraint fk_title cascade;
 commit;
 
 select * from movie where mno='0' order by mno;
+
+
+--------------------------------------------------------------------------------------
+--찜목록
+
+create table movieLike(
+num number not null primary key,
+ID varchar2(7) not null,
+MNO varchar2(100)not null
+   );
+
+create sequence movieLike_num
+   start with 2
+   increment by 1
+   minvalue 1
+   maxvalue 1000
+   cycle;
+
+
+
+alter table movieLike
+add constraint fk_mno foreign key (mno) references movie(mno);   
+   
+   alter table movieLike
+add constraint fk_id foreign key (id) references people(id);
+
+
+select * from movieLike;
+
+
+insert into movieLike values(movieLike_num.nextval,'admin','23138'); 
+insert into movieLike values(movieLike_num.nextval,'admin','181970');
+insert into movieLike values(movieLike_num.nextval,'admin','99702');
+insert into movieLike values(movieLike_num.nextval,'admin','114330');
+
+
+insert into movieLike values(movieLike_num.nextval,'qqqq','114330');
+
+insert into movieLike values(movieLike_num.nextval,'abc123','23138');
+insert into movieLike values(movieLike_num.nextval,'qwer1234','23138');

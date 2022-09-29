@@ -10,9 +10,6 @@
 <style type="text/css">
 @import url("css/bootstrap.css");
 
-.body{
-		color:#000000;
-}
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
@@ -21,12 +18,12 @@ a, a:hover {
 	<script src="jquery-1.12.0.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </head>
-<body class="body">
+<body>
 	<h2 align="center">글쓰기</h2>
 <form action="boardwritePro.jsp" method="post">
-	<table class="table table-striped" border="1" align="center" style="width:60%" >
+	<table class="table table-striped" align="center" style="width:60%" >
 		<tr height="40" align="center">
-			<td width="200">작성자</td>
+			<td width="300">작성자</td>
 			<td width="600"><input type="text" class="form-control" name="writer" size="77" placeholder="홍길동"/></td>
 		</tr>
 		<tr height="40" align="center">

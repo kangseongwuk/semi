@@ -2,19 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ page import="movie.movieDAO"%>
 <%@ page import="movie.movieBean"%>
-<%@ page import="java.util.Vector"%>  
-<%	request.setCharacterEncoding("UTF-8");%>    
+<%@ page import="movie.peopleDAO"%>
+<%@ page import="movie.peopleBean"%>
+<%@ page import="movie.movieLikeDAO"%>
+<%-- <%@ page import="movie.movieLikeBean"%> --%>
+<%@ page import="java.util.Vector" %>  
+
+
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="jquery-1.12.0.min.js"></script>
-<script src="js/bootstrap.js"></script>	
 <head>
-
-<meta charset="UTF-8">
-<title>게시판 댓글 쓰기(저장)</title>
-</head>
+<style>
 <style type="text/css">
+
+table {
+   color:white;
+   
+}
+</style>
+   <style>
 
 	.poster{
 		/* position:relative; */
@@ -69,29 +75,40 @@
     	width:100px;
     }
 </style>
+
+<meta charset="UTF-8">
+<title>찜목록</title>
+</head>
 <body>
-
-
-<%
-	request.setCharacterEncoding("UTF-8");
-    String genre = request.getParameter("genre");
-   
-
-	movieDAO mdao = new movieDAO();
-
-	Vector<movieBean> vec3 = mdao.GenreselectMovie(genre);
-
-	for(int i=0; i < vec3.size(); i++){
+		<%
 		
-		movieBean gBean = vec3.get(i);
-%> 
+		request.setCharacterEncoding("UTF-8");
+		movieLikeDAO moDAO = new movieLikeDAO();
+		String id = (String) session.getAttribute("id");
+		
+		Vector<movieBean> vec = moDAO.allselectlike(id);
 
+	%>
+
+		<h2><span style="color:yellow;"><Strong><%=id %></Strong></span>님이 찜하신 목록입니다.</h2>
+
+
+					
+						<%
+
+							for(int i=0; i<vec.size(); i++){	
+								movieBean mBean = vec.get(i);
+								
+						%>
         <div style="width:310px;display:inline-block;margin:1%;">
-        <a href="main.jsp?center=movieDetail.jsp?mno=<%=gBean.getMno()%>"><img class="poster"src="<%=gBean.getPoster() %>" width="300px" height="400px"></a>
+        <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+        <a href="likeDeletePro.jsp?mno=<%=mBean.getMno()%>&id=<%=id%>">찜 삭제</a>
 	</div>
-        <%} %>
+						<%}%>
+							
 
-
+						
+							
 
 
 </body>

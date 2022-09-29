@@ -10,11 +10,15 @@
 <title>회원 정보 상세 보기</title>
 <style>
 @import url("css/bootstrap.css");
+a, a:hover {
+		color:inherit;
+		text-decoration:none;
+		}
 </style>
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
-<body style="margin-top: 100px;">
+<body>
 <%
 	String id = request.getParameter("id");
 

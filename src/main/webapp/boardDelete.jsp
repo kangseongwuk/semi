@@ -7,10 +7,6 @@
 <head>
 <style type="text/css">
 @import url("css/bootstrap.css");
-
-.body{
-		color:#000000;
-}
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
@@ -22,7 +18,7 @@ a, a:hover {
 <meta charset="UTF-8">
 <title>작성 글 삭제</title>
 </head>
-<body class="body">
+<body>
 	<%
 	request.setCharacterEncoding("UTF-8");
 	int b_no = Integer.parseInt(request.getParameter("b_no"));
@@ -34,7 +30,7 @@ a, a:hover {
 	<h2 align="center">게시글 삭제</h2>
 	<div align="center">
 		<form action="boardDeletePro.jsp" method="post">
-			<table  class="table table-delete" border="1" style="width:50%; text-align: center;">
+			<table  class="table table-delete" style="width:50%; text-align: center;">
 				<tr style="height: 50px;">
 					<td width="100">번호</td>
 					<td><%=bBean.getb_no()%></td>

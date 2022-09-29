@@ -9,10 +9,6 @@
 
 <style type="text/css">
 @import url("css/bootstrap.css");
-
-.body{
-		color:#000000;
-}
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
@@ -21,7 +17,7 @@ a, a:hover {
 	<script src="jquery-1.12.0.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </head>
-<body class="body">
+<body>
 	<h2 align="center">댓글 쓰기</h2>
 <%
 	int b_no = Integer.parseInt(request.getParameter("b_no"));
@@ -31,22 +27,22 @@ a, a:hover {
 %>
 <div align="center">
 	<form action="boardRewritePro.jsp" method="post"> 
-		<table border="1" style="width: 800px; text-align: center;" class="table table-striped">
-			<tr style="height: 50px">
-				<td width="100">작성자</td>
-				<td class="form-control"><input type="text" name="writer" size="90"></td>					
+		<table style=" text-align: center;" class="table table-striped">
+			<tr style="height: 50px;width:200px;">
+				<td style="width: 25%">작성자</td>
+				<td><input type="text" name="writer" size="90"></td>					
 			</tr>	
 			<tr>
 				<td width="120">제목</td>
-				<td class="form-control"><input type="text" name="subject" size="90" value=[Reply]:></td>		
+				<td><input type="text" name="subject" size="90" value=[관리자답변]:></td>		
 			</tr>
 			<tr style="height: 50px">
 				<td width="120">비밀번호</td>
-				<td class="form-control"><input type="password" name="password" size="90"></td>			
+				<td><input type="password" name="password" size="90"></td>			
 			</tr>
 			<tr style="height: 280px">
 				<td width="100">내용</td>
-				<td colspan="3" class="form-control" style="height: 270px">
+				<td colspan="3" style="height: 270px">
 					<textarea rows="10" cols="90" name="content"></textarea></td>						
 			</tr>
 			<tr style="height: 50px;">

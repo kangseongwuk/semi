@@ -12,43 +12,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-function wrapWindowByMask(){
-    //화면의 높이와 너비를 구한다.
-    var maskHeight = $(document).height();  
-    var maskWidth = $(window).width();  
-
-    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-    $('#mask').css({'width':maskWidth,'height':maskHeight});  
-
-    //애니메이션 효과 - 일단 1초동안 까맣게 됐다가 80% 불투명도로 간다.
-    $('#mask').fadeIn(800);      
-    $('#mask').fadeTo("slow",0.8);    
-
-    //윈도우 같은 거 띄운다.
-    $('.window').show();
-}
-
-$(document).ready(function(){
-    //검은 막 띄우기
-    $('.openMask').click(function(e){
-        e.preventDefault();
-        wrapWindowByMask();
-    });
-
-    //닫기 버튼을 눌렀을 때
-    $('.window .close').click(function (e) {  
-        //링크 기본동작은 작동하지 않도록 한다.
-        e.preventDefault();  
-        $('#mask, .window').hide();  
-    });       
-
-    //검은 막을 눌렀을 때
-    $('#mask').click(function () {  
-        $(this).hide();  
-        $('.window').hide();  
-    });      
-});
-
 </script>
 
 <meta charset="UTF-8">
@@ -110,6 +73,7 @@ String id = (String)session.getAttribute("id");
 
 
 
+
 	movieDAO mdao = new movieDAO(); //영화정보
 	Vector<movieBean> vec = mdao.allselectMovie(); //모든영화정보
 	
@@ -119,17 +83,9 @@ String id = (String)session.getAttribute("id");
 		movieBean mBean = vec.get(i);
 %>
 
-        <!-- <div id="mask"></div> -->
-        <div style="width:310px;display:inline-block;">
+        <div style="width:310px;display:inline-block;margin:1%;">
 <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
-	</div>
-   		<%-- <a href="#" class="openMask"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a> --%>
-
-
-<%-- 	    <div class="window">
-<jsp:include page="movieDetail.jsp">
-	<jsp:param value="<%=mBean1.getMno()%>" name="mno"/></jsp:include>
-		</div> --%>
+</div>
 <%} %>
 </body>
 </html>

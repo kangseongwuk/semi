@@ -13,10 +13,6 @@
 
 <style type="text/css">
 @import url("css/bootstrap.css");
-
-.body{
-		color:#000000;
-}
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
@@ -25,7 +21,7 @@ a, a:hover {
 	<script src="jquery-1.12.0.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </head>
-<body class="body">
+<body>
 <% String id = (String)session.getAttribute("id"); %>
 
 
@@ -55,7 +51,7 @@ a, a:hover {
 	number = count - (currentPage - 1) * pageSize;//테이블에 표시할 번호 설정, 139 - (1 - 1) * 10 = 139
 %>
 	<h2 align="center">문의사항 게시판</h2>
-	<table class="table table-hover" border="1" align="center" >
+	<table class="table table-hover" align="center" >
 	<tr align="center" style="height: 40;">
 		<td width="30">번호</td>
 		<td width="250">제목</td>

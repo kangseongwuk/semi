@@ -3,32 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-.div_main{
-	background: balck;
-}
-.div1{
-	background: white;
-	border: 2px solid pink;
-}
-.div2{
-	background: white;
-	border: 2px solid pink;
-}
-.div3{
-	background: white;
-	border: 2px solid pink;
-}
-.div4{
-	background: white;
-	border: 2px solid pink;
-}
-.div5{
-	background: white;
-	border: 2px solid pink;
-}
-
-</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

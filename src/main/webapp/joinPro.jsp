@@ -19,7 +19,7 @@
 	String name2= request.getParameter("name"); // 이름 입력값
 	String pwd1 = request.getParameter("pw"); // pw 입력값
 	String pwd2 = request.getParameter("pw1"); // pw 확인 입력값
-	String gender = request.getParameter("ㅑㅞㅕㅅ[name=gender]"); // pw 확인 입력값
+	String gender = request.getParameter("input[name=gender]"); // pw 확인 입력값
 	String textgenre  = "";
 	
 	for(int i=0; i < genre.length; i++){

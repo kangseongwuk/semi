@@ -59,12 +59,8 @@
 		movieBean bean = vec2.get(i);
 		
 %>
-	   <span class="box2">제목: <%=bean.getTitle()%><br>
-	    				장르: <%=bean.getGenre()%><br>
-	    				국내외: <%=bean.getCountry()%><br>
-	    				런타임: <%=bean.getRuntime() %></span>
 	    				
-      <div  class="box1">
+        <div style="width:310px;display:inline-block;margin:1%;">
         <a href="main.jsp?center=movieDetail.jsp?mno=<%=bean.getMno()%>"><img class="poster"src="<%=bean.getPoster() %>" width="300px" height="400px"></a>
 	</div>
 	

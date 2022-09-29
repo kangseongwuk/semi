@@ -16,7 +16,7 @@
 } */
 
 a, a:hover {
-		color:#000000;
+		color:inherit;
 		text-decoration:none;}
 </style>
 <script src="jquery-1.12.0.min.js"></script>
