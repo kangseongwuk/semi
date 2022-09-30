@@ -92,7 +92,7 @@ function loginC() {
 
       %>   
       
-         <header class="header">
+         <header class="header" style="z-index: 90;">
       <nav class="navbar navbar-expand-lg" onclick="loginC()">
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="btn btn-dark">

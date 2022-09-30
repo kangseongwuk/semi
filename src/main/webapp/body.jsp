@@ -63,12 +63,18 @@
       z-index:10000;
     }
       video {
-/*        width: 160vh; */
-       position: fixed;
-       right: 200px;
-       bottom:250px;
-       z-index: 1;
+    width: 160vh;
+    position: fixed;
+    right: 8vh;
+    bottom: 14vh;
+    z-index: 1;
        }
+    #cover{
+    	background: rgba(0,0,0,0.7);
+    	position:relative;
+    	margin:1%;
+    	z-index: 9;
+    }
 
 </style>
 </head>
@@ -79,6 +85,7 @@
   <b>Your browser does not support the video tag.</b>
 </video>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div id="cover">
 <% 
 request.setCharacterEncoding("UTF-8");
 String id = (String)session.getAttribute("id");
@@ -99,5 +106,6 @@ String id = (String)session.getAttribute("id");
 <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="250px" height="350px"></a>
 </div>
 <%} %>
+</div>
 </body>
 </html>

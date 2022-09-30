@@ -25,7 +25,6 @@ body, html {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 99;
   height: 75px;
   padding: 1rem;
   color: white;
@@ -34,6 +33,7 @@ body, html {
   display: flex;
   justify-content: space-between; /* 가로축-중심축 -> 요소들 사이 동일 간격 */
   align-items: center; /* 세로축 기준 정렬 */
+  z-index: 3;
 }
 
 
