@@ -27,15 +27,15 @@ a, a:hover {
 	boardBean bBean = bdao.oneselectboard(b_no);
 %>
 
-	<h2 align="center">게시글 삭제</h2>
+	<h2 align="center" style="width:150vh">게시글 삭제</h2>
 	<div align="center">
 		<form action="boardDeletePro.jsp" method="post">
-			<table  class="table table-delete" style="width:50%; text-align: center;">
+			<table  class="table table-striped" style="width:50%; text-align: center;">
 				<tr style="height: 50px;">
 					<td width="100">번호</td>
-					<td><%=bBean.getb_no()%></td>
+					<td><b><%=bBean.getb_no()%></b></td>
 					<td width="100">작성자</td>
-					<td><%=bBean.getWriter() %></td>
+					<td><b><%=bBean.getWriter() %></b></td>
 				</tr>
 				<tr style="height: 50px;">
 					<td width="120">비밀번호</td>

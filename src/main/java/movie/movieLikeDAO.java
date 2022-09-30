@@ -37,8 +37,9 @@ public Vector<movieBean> allselectlike(String id)throws SQLException{
 	
 	Vector<movieBean> vec = new Vector<movieBean>();
 	
-	String sql = "SELECT movie.title, movie.genre, movie.love, movie.mno, movie.poster FROM movie join movieLike on movie.mno = movieLike.mno join people on movieLike.id = people.id where movieLike.id = ?";
-	
+	String sql = "SELECT DISTINCT movie.title, movie.genre, movie.love, movie.mno,"
+			+ " movie.poster FROM movie join movieLike on movie.mno = movieLike.mno join people on movieLike.id"
+			+ " = people.id where movieLike.id = ?";
 	
 	
 	try {

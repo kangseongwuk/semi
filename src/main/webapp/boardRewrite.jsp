@@ -12,6 +12,10 @@
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
+.table {
+	border-collapse : collapse;
+	border-spacing : 0;
+}
 
 </style>
 	<script src="jquery-1.12.0.min.js"></script>
@@ -24,24 +28,25 @@ a, a:hover {
 	int ref = Integer.parseInt(request.getParameter("ref"));
 	int re_step = Integer.parseInt(request.getParameter("re_step"));
 	int re_level = Integer.parseInt(request.getParameter("re_level"));
+	String id = (String)session.getAttribute("id");
 %>
 <div align="center">
 	<form action="boardRewritePro.jsp" method="post"> 
 		<table style=" text-align: center;" class="table table-striped">
-			<tr style="height: 50px;width:200px;">
+			<tr style="height: 50px;">
 				<td style="width: 25%">작성자</td>
-				<td><input type="text" name="writer" size="90"></td>					
+				<td><input type="hidden" class="form-control" name="writer" size="77" placeholder="<%=id %>" value="<%=id %>" readonly/>관리자</td>					
 			</tr>	
 			<tr>
-				<td width="120">제목</td>
+				<td >제목</td>
 				<td><input type="text" name="subject" size="90" value=[관리자답변]:></td>		
 			</tr>
 			<tr style="height: 50px">
-				<td width="120">비밀번호</td>
+				<td>비밀번호</td>
 				<td><input type="password" name="password" size="90"></td>			
 			</tr>
 			<tr style="height: 280px">
-				<td width="100">내용</td>
+				<td>내용</td>
 				<td colspan="3" style="height: 270px">
 					<textarea rows="10" cols="90" name="content"></textarea></td>						
 			</tr>

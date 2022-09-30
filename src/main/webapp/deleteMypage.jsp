@@ -23,7 +23,7 @@ a, a:hover {
 <script src="js/bootstrap.js"></script>
 </head>
 <body>
-<h2 align="center">회원정보 삭제 화면</h2>
+<h2 align="center" align="center" >회원정보 삭제 화면</h2>
 	<div align="center"> 
 	<form action="deleteProMypage.jsp" method="post">
 	<table align="center" class="table table-bordered" border="1" style="width:30%;">

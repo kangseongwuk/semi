@@ -50,7 +50,7 @@ a, a:hover {
 		</tr>
 		
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="center">
 				<button onclick="location.href='main.jsp?center=updateMypage.jsp?id=<%=pBean.getId() %>'">수정버튼</button>&nbsp;&nbsp;
 				<button onclick="location.href='main.jsp?center=deleteMypage.jsp?id=<%=pBean.getId() %>'">회원탈퇴</button>&nbsp;&nbsp;
 			</td>

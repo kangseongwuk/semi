@@ -251,7 +251,7 @@ button {
 		<label>감독</label> <input type="text" name="director">
 		<label>출연진</label> <input type="text" name="actor">
 		<label>영화소개</label> <textarea rows="10" cols="90" name="story"></textarea>
-		<label>포스터</label> <input type="text" value="./images/movieDB/(이곳에 파일.확장자입력)" name="poster">
+		<label>포스터</label> <input type="text" value="./movieDB/(이곳에 파일.확장자입력)" name="poster">
 		<label>평점</label> <input type="text" name="love">
 		<button type="submit">데이터 삽입</button>
 	</form>	

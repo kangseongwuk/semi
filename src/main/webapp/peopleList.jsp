@@ -18,6 +18,10 @@
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
+.table {
+	border-collapse : collapse;
+	border-spacing : 0;
+}
 </style>
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
@@ -28,14 +32,15 @@ a, a:hover {
 	
 	Vector<peopleBean> vec = pdao.allselectmember();
 %>
+<div align="center" style="width:110vh;">
 	<h2 align="center">회원목록</h2>
-<table align="center" class="table table-bordered" border="1" style="width:50%;">
+<table class="table table-hover" align="center" style="text-align: center;width: 100vh;margin-top:9%;">
 	<tr align="center" style="height: 40;">
-		<td width="100">아&nbsp;이&nbsp;디</td>
+		<td width="200">아&nbsp;이&nbsp;디</td>
 		<td width="120">이&nbsp;&nbsp;름</td>
 		<td width="120">성&nbsp;&nbsp;별</td>
 		<td width="120">나&nbsp;&nbsp;이</td>
-		<td width="120">선호장르&nbsp;</td>
+		<td width="600">선호장르&nbsp;</td>
 	
 	</tr>
 
@@ -59,7 +64,7 @@ a, a:hover {
 	</tr>
 </table>
 
-	       
+	   </div>    
 
 
 </body>

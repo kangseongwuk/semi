@@ -20,37 +20,7 @@
 <title>body</title>
 <style type="text/css">
 
-	.poster{
-		margin-top:10%;
-		margin-left:20%
-		/* position:relative; */
-	}
-	.box2{
-		position: absolute;
-		display:inline-block;
-		maring-right:200px;
-		background:rgba(0,0,0,0.5);
-		color: white;
-		width:300px;
-		height: 400px;
-		border-radius: 7px;
-	/* 	padding-left:10%;
-		padding-top:19%; */
-	}
-	.box1{
-		border-radius: 7px;
-		width:300px;
-		height: 400px;
-	}
 	
-	.select{
-	 position: absolute;
-		display:inline-block;
-	
-	
-	
-	
-	}
 	
 	  
 
@@ -59,7 +29,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 
@@ -361,34 +330,26 @@
     animation: ring 1.5s infinite;
 }
 	
-	
+	#table {
+	display: block;
+	height: 110px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.07);
+	border-radius: 3px;
+	padding: 0 10px;
+	margin-top: 8px;
+}
+
 </style>
 </head>
 <body>
 	 <form action="randomPro.jsp" name="genre">
-	
-  <table style="margin-bottom:50px;margin-left:20%;">  
+	 
+	 
+  <table style="margin-bottom:50px;margin-left:15%;">  
   		<tr>
-  		<td align="center"><button class="w-btn w-btn-gray" name="genre" value="액션"style="
-			    margin-bottom: 20px;padding-left:40%;padding-right:40%;
-			">액&nbsp;션</button>
-				<img src="http://joyposter.cafe24.com/MoF/step/NEW-01/FJB-084.jpg"style="
-				    width: 250px;
-				    height: 300px;
-		"/>
-		</td>
-
-    <td align="center">	
-    <button class="w-btn w-btn-gray" name="genre" value="애니메이션"style="
-		margin-bottom: 20px;padding-left:27%;padding-right:27%;
-">애&nbsp;니&nbsp;메&nbsp;이&nbsp;션</button>
-<img src="https://w.namu.la/s/2b55f1cfc10f0819ff6bc2fc3c788bfb27af63dd39d48a183f8b136680a4ad645f0fbbd378095606e8faf58ce4e1cd6ed09763b4023d6cb9a4ade062be081086790fd83b8ab7e540078d6ebc8e0c76d27f1ee0bd9f69671a33f416097c1b48f03109d0f60eef3e2f5100f063e45533fe"style="
-   width: 250px;
-    height: 300px;
-       "/>
-</td>
-
-  <td align="center">    	
+  	 <!-- 드라마 -->
+  	 <td align="center" style="width: 282px;" >    	
       	<button class="w-btn w-btn-gray" name="genre" value="드라마"style="
 		margin-bottom: 20px;padding-left:35%;padding-right:35%;
 ">드&nbsp;라&nbsp;마</button>
@@ -396,40 +357,83 @@
   width: 250px;
     height: 300px;"/>
 	  </td>
-	</tr>
-		</table>
-		
-		
-		
-		
-		
-		
-		
-		<table style="margin-bottom:50px;margin-left:20%;">
-		<tr >
-	  <td align="center" >
+	  
+	  <!-- 멜로 -->
+	  	<td align="center">
+	  	<button class="w-btn w-btn-gray" name="genre" value="멜로"style="
+		margin-bottom: 20px;padding-left:38%;padding-right:38%;
+">멜&nbsp;로</button>
+<img src="http://cdn.joongboo.com/news/photo/201606/1080688_995504_0801.jpg"style="
+  width: 250px;
+    height: 300px;"/>
+	  	</td>
+	  
+  	<!-- 코미디 -->
+	  <td align="center">
 	  	<button class="w-btn w-btn-gray" name="genre" value="코미디"style="
-		margin-bottom: 20px;padding-left:35%;padding-right:35%;
+		margin-bottom: 20px;padding-left:30%;padding-right:30%;
 ">코&nbsp;미&nbsp;디</button>
 <img src="https://www.rfa.org/korean/weekly_program/culture_talk/openculture-01292019140941.html/extreme_job_movie_b.jpg/@@images/image"style="
   width: 250px;
     height: 300px;"/>
 	  	</td>
+	  	
+<!-- 공포 -->
 	  	<td align="center">
 	  	<button class="w-btn w-btn-gray" name="genre" value="공포"style="
-		margin-bottom: 20px;padding-left:40%;padding-right:40%;
+		margin-bottom: 20px;padding-left:38%;padding-right:38%;
 ">공&nbsp;포</button>
 <img src="https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/1Y7L/image/ikJ10IPiN57-Z8z3cPi5lNofhjI"style="
   width: 250px;
     height: 300px;"/>
 	  	</td>
-	  	<td align="center">
+
+ 
+	</tr>
+
+
+		</table>
+
+		
+		<table style="margin-bottom:50px;margin-left:15%;">
+		<tr >
+		<!-- 액션 -->
+  		<td align="center"><button class="w-btn w-btn-gray" name="genre" value="액션"style="
+			    margin-bottom: 20px;padding-left:35%;padding-right:35%; 
+			">액&nbsp;션</button>
+				<img src="http://joyposter.cafe24.com/MoF/step/NEW-01/FJB-084.jpg"style="
+				    width: 250px;
+				    height: 300px;
+		"/>
+		</td>
+	<!-- SF -->
+	  	<td align="center" style="width: 294px;">
+	  	<button class="w-btn w-btn-gray" name="genre" value="SF"style="
+		margin-bottom: 20px;padding-left:38%;padding-right:38%;
+">S&nbsp;F</button>
+<img src="https://blog.kakaocdn.net/dn/Cm6OI/btqEm2kwFua/lbHekaUcUPSbbFQJH8iSe0/img.jpg"style="
+  width: 250px;
+    height: 300px;"/>
+	  	</td>
+	  	
+	  	<!-- 뮤지컬 -->
+	  	<td align="center" style="width: 315px;">
 	  	<button class="w-btn w-btn-gray" name="genre" value="뮤지컬"style="
-		margin-bottom: 20px;padding-left:35%;padding-right:35%;
+		margin-bottom: 20px;padding-left:32%;padding-right:32%;
 ">뮤&nbsp;지&nbsp;컬</button>
 <img src="http://t1.daumcdn.net/cfile/211A4E4750EFE4AC0F"style="
   width: 250px;
     height: 300px;"/>
+</td>
+<!-- 애니메이션 -->
+    <td align="center" style="width: 294px;">	
+    <button class="w-btn w-btn-gray" name="genre" value="애니메이션"style="
+		margin-bottom: 20px;padding-left:25%;padding-right:25%;
+">애&nbsp;니&nbsp;메&nbsp;이&nbsp;션</button>
+<img src="https://w.namu.la/s/2b55f1cfc10f0819ff6bc2fc3c788bfb27af63dd39d48a183f8b136680a4ad645f0fbbd378095606e8faf58ce4e1cd6ed09763b4023d6cb9a4ade062be081086790fd83b8ab7e540078d6ebc8e0c76d27f1ee0bd9f69671a33f416097c1b48f03109d0f60eef3e2f5100f063e45533fe"style="
+   width: 250px;
+    height: 300px;
+       "/>
 </td>
 	</tr>						
 		</table>	

@@ -62,11 +62,23 @@
       top:10%;
       z-index:10000;
     }
+      video {
+/*        width: 160vh; */
+       position: fixed;
+       right: 200px;
+       bottom:250px;
+       z-index: 1;
+       }
 
 </style>
 </head>
 <body>
 
+<video muted autoplay loop>
+  <source src="./images/main.mp4" type="video/mp4">
+  <b>Your browser does not support the video tag.</b>
+</video>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <% 
 request.setCharacterEncoding("UTF-8");
 String id = (String)session.getAttribute("id");
@@ -83,8 +95,8 @@ String id = (String)session.getAttribute("id");
 		movieBean mBean = vec.get(i);
 %>
 
-        <div style="width:310px;display:inline-block;margin:1%;">
-<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="300px" height="400px"></a>
+        <div style="width:310px;display:inline-block;position:relative;margin:1%;z-index: 10">
+<a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean.getMno()%>"><img class="poster"src="<%=mBean.getPoster() %>" width="250px" height="350px"></a>
 </div>
 <%} %>
 </body>

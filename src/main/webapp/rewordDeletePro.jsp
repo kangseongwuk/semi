@@ -15,16 +15,13 @@
 	String id = (String) session.getAttribute("id");
 	String mno = request.getParameter("mno");
 	String title = request.getParameter("title");
-
-	rewordDAO rdao = new rewordDAO();
-	rdao.reworddelete(id, title);
+	int numnum = Integer.parseInt(request.getParameter("numnum"));
 	
-	 //response.sendRedirect("main.jsp?center=movieDetail.jsp?mno=" +request.getParameter("mno")); 
-	response.getWriter().print("<script>alert('댓글삭제성공'); location.href ='main.jsp</script>");
+	rewordDAO rdao = new rewordDAO();
+	rdao.reworddelete(numnum);
+	
+	response.sendRedirect("main.jsp?center=movieDetail.jsp?mno="+request.getParameter("mno"));
 %>	  
-		<%-- <script>
-   			location.href='main.jsp?center=movieDetail.jsp?mno=<%=mno%>'   				
-	   </script> --%>
 	
 
 </body>

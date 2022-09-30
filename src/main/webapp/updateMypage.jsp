@@ -15,13 +15,13 @@ table{
 }
 
 a, a:hover {
-		color:#000000;
+		color:inherit;
 		text-decoration:none;}
 </style>
 <script src="jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
-<body style="margin-top: 100px;">
+<body>
 <%
 	String id = request.getParameter("id");
 	
@@ -29,7 +29,7 @@ a, a:hover {
 	peopleBean pBean = pdao.oneselectmember(id);
 %>
 
-<h2 align="center">회원정보 수정 화면 구현</h2>
+<h2 align="center" align="center" >회원정보 수정 화면 구현</h2>
 <form action="updateProMypage.jsp" method="post"> 
 <div align="center">
 	<table align="center" class="table table-bordered" border="1" style="width:30%;">

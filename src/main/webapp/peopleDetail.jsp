@@ -26,7 +26,7 @@ a, a:hover {
 	peopleBean pBean = pdao.oneselectmember(id);
 %>
 
-<h2 align="center">회원정보 상세 보기 화면 구현</h2>
+<h2 align="center" style="width:150vh">회원정보 상세 보기 화면 구현</h2>
 <div align="center">
 	<table class="table table-bordered" border="1" style="text-align: center; width:50%;">
 		<tr align="center" style="height: 40;">

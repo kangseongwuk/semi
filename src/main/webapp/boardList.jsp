@@ -16,6 +16,10 @@
 a, a:hover {
 		color:inherit;
 		text-decoration:none;}
+.table {
+	border-collapse : collapse;
+	border-spacing : 0;
+}
 
 </style>
 	<script src="jquery-1.12.0.min.js"></script>
@@ -50,14 +54,15 @@ a, a:hover {
 	
 	number = count - (currentPage - 1) * pageSize;//테이블에 표시할 번호 설정, 139 - (1 - 1) * 10 = 139
 %>
-	<h2 align="center">문의사항 게시판</h2>
-	<table class="table table-hover" align="center" >
-	<tr align="center" style="height: 40;">
-		<td width="30">번호</td>
-		<td width="250">제목</td>
-		<td width="50">작성자</td>
-		<td width="50">작성일자</td>
-		<td width="50">조회수</td>
+	<h2 align="center" style="width:150vh">문의사항 게시판</h2>
+<div align="center">
+	<table class="table table-striped" style="text-align: center; width: 70%;">
+	<tr align="center">
+		<td>번호</td>
+		<td>제목</td>
+		<td>작성자</td>
+		<td>작성일자</td>
+		<td>조회수</td>
 	</tr>
 
 	<%
@@ -65,7 +70,7 @@ a, a:hover {
 			
 			boardBean bBean = vec.get(i);		
 	%>
-	<tr height="40" align="center">
+	<tr align="center">
 		<td><%=number--%></td>
 		<td>
 			<a href="main.jsp?center=boardDetail.jsp?b_no=<%=bBean.getb_no()%>" style="text-decoration:none">
@@ -98,7 +103,7 @@ a, a:hover {
 	<!-- 글쓰기 버튼 -->
 
 <c:if test="${id eq null}">
-	<button onclick="location.href='main.jsp?center=boardwrite.jsp'" class="btn btn-light" style ="float:right" >글쓰기</button>
+	<button onclick="location.href='main.jsp?center=boardwrite.jsp'" class="btn btn-light" style ="float:right;margin-right:15%;" >글쓰기</button>
 </c:if>
 	<button onclick="location.href='main.jsp'" class="btn btn-light float-right" style ="float:right">main</button>
 	<p align="center">
@@ -133,11 +138,11 @@ a, a:hover {
 		}
 			for(int i = startPage; i <= endPage; i++){
 	%>
-	<div class="container">
+	<div class="container" style="margin-left:15%;">
 		<div class="row">
 		<div class="col">
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="main.jsp?center=boardList.jsp?pageNum=<%=i %>">[<%=i %>]</a></li>
+			<li class="page-item"><a class="page-link" href="main.jsp?center=boardList.jsp?pageNum=<%=i %>"><%=i %>페이지</a></li>
 		</ul>
 		</div>
 		</div>
@@ -150,8 +155,7 @@ if(endPage < pagecount) {
 	<%
 		}
 	}
-	System.out.println("로그인 여부 :" + id);
 	%>
-	</p>	
+	 </div>	
 </body>
 </html>

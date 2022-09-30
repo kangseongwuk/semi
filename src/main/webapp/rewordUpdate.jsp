@@ -47,8 +47,11 @@
 	String mno = request.getParameter("mno");
 	String id = (String) session.getAttribute("id");
 	
+	   rewordDAO rdao = new rewordDAO();   
+	   rewordBean rBean = rdao.findnumnum(mno, id);
+	   
+	   int numnum = rBean.getNumnum();
 	
-	rewordDAO rdao = new rewordDAO();
 	
 	movieDAO mdao = new movieDAO();	
 	movieBean mBean = mdao.oneselectMovie(mno);
@@ -69,13 +72,12 @@
 				<div>	
 					<input type="hidden" name="mno" value="<%=mBean.getMno() %>">
 					<input type="hidden" name="id" value="<%=id %>">
+					<input type="hidden" name="numnum" value="<%=rBean.getNumnum() %>">
 					<input type="submit" value="수정완료" class="btn btn-light">&nbsp;&nbsp; 
 					<input type="reset" value="수정취소" class="btn btn-light">&nbsp;&nbsp; 
 				</div>		 
 		</form>
 	</div>
 
-</body>
-</html>
 </body>
 </html>

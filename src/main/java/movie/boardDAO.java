@@ -265,12 +265,13 @@ public class boardDAO {
 		try {
 			getConnection();
 
-			String sql = "update board set content = ? where b_no = ?";
+			String sql = "update board set subject = ?, content = ? where b_no = ?";
 
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, bBean.getContent());
-			pstmt.setInt(2, bBean.getb_no());
+			pstmt.setString(1, bBean.getSubject());
+			pstmt.setString(2, bBean.getContent());
+			pstmt.setInt(3, bBean.getb_no());
 
 			pstmt.executeUpdate();
 

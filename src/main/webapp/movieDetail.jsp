@@ -91,12 +91,11 @@ table {
 </head>
 <body>
 
-
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-	<jsp:useBean id="rbean" class="movie.rewordBean">
-	<jsp:setProperty name="rbean" property="*"/></jsp:useBean>
+<jsp:useBean id="rBean" class="movie.rewordBean">
+		<jsp:setProperty name="rBean" property="*"/></jsp:useBean>
 
 <% 	
 	String id = (String) session.getAttribute("id");	
@@ -104,10 +103,13 @@ table {
 	
 	//댓글정보
 	rewordDAO rdao = new rewordDAO();	
-	
 	rewordBean rBean2 = rdao.getGrade_avg(mno);
 	
-	Vector<rewordBean> rvector = rdao.rewordSelectEach(mno);
+	Vector<rewordBean> rVector = rdao.rewordSelectEach(mno);
+	rewordBean rBean4 = rdao.findnumnum(mno, id);
+	
+	int numnum = rBean4.getNumnum();
+	
 	
 	//영화정보
 	movieDAO mdao = new movieDAO();
@@ -116,6 +118,16 @@ table {
 	//모든영화정보
 	Vector<movieBean> vec = mdao.allselectMovie(); 
 %>
+<script>
+function like(){
+    if(confirm("찜하시겠습니까?")){
+        location.href = "likePro.jsp?mno=<%=mno%>&id=<%=id%>";
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
 <%   
 	for(int i=0; i < vec.size(); i++){
 		movieBean mBean = vec.get(i);
@@ -156,7 +168,7 @@ table {
 		   <td colspan="3"><%=mBean1.getStory() %></td>
 		</tr>
 		<tr>
-                              <td><a href="likePro.jsp?mno=<%=mno%>&id=<%=id%>">찜하기</a></td>
+                             <td colspan="3"><a href="#" onclick="like()">찜하기</a></td>
                            </tr>
 		</table>
 	<jsp:include page="rewordinsert.jsp"/>
@@ -174,9 +186,9 @@ table {
 		</tr>
 
 		<%
-		for(int i=0; i < rvector.size(); i++){
+		for(int i=0; i < rVector.size(); i++){
 		   
-		   rewordBean rBean3 = rvector.get(i);      
+		   rewordBean rBean3 = rVector.get(i);      
 		%>
 		<tr height="40" align="center">
 		  	<td>
@@ -186,23 +198,21 @@ table {
 		      <%=rBean3.getGrade() %>
 			</td>
 			<td colspan="4">
-		   		<%=rBean3.getWriting() %>&nbsp;&nbsp;&nbsp;&nbsp;
-		   <%
-		   		if (id.equals(rBean3.getId())){
-		   	%>		
-		   			<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?id=<%=id %>&mno=<%=rbean.getMno() %>'" class="btn btn-light" style="align:right">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button onclick="location.href='main.jsp?center=rewordDeletePro.jsp?id=<%=id %>&mno=<%=rbean.getMno() %>&title=<%=mBean1.getTitle() %>'" class="btn btn-light" style="align:right">삭제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;	
-		   <% 	} else if(id.equals("admin")){
-			%>  	<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?id=<%=id %>&mno=<%=rbean.getMno() %>'" class="btn btn-light" style="align:right">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button onclick="location.href='main.jsp?center=rewordDeletePro.jsp?id=<%=id %>&mno=<%=rbean.getMno() %>&title=<%=mBean1.getTitle() %>'" class="btn btn-light" style="align:right">삭제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-			   		
-			   		
-		  	<%  }%>	
-			   
-		   </td>	
-		</tr>
-		<%} %>   
-		</table>														
+			   		<%=rBean3.getWriting() %>&nbsp;&nbsp;&nbsp;&nbsp;
+				   <%
+				   		if (id.equals(rBean3.getId())){
+				   	%>		
+				   			<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?id=<%=id %>&mno=<%=mno %>&numnum=<%=rBean4.getNumnum() %>'" class="btn btn-light" style="align:right">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+							<button onclick="location.href='main.jsp?center=rewordDelete.jsp?id=<%=id %>&mno=<%=mno %>&title=<%=mBean1.getTitle() %>&numnum=<%=rBean4.getNumnum() %>'" class="btn btn-light" style="align:right">삭제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+							<%  
+							%>
+				   <% 	} else if(id.equals("admin")){
+					%>  	<button onclick="location.href='main.jsp?center=rewordUpdate.jsp?id=<%=id %>&mno=<%=mno %>&numnum=<%=rBean4.getNumnum() %>'" class="btn btn-light" style="align:right">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+							<button onclick="location.href='main.jsp?center=rewordDelete.jsp?id=<%=id %>&mno=<%=mno %>&title=<%=mBean1.getTitle() %>&numnum=<%=rBean4.getNumnum() %>'" class="btn btn-light" style="align:right">삭제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<%}
+				   }%></td>	
+				</tr>
+				</table>														
 </div>
 
 </body>

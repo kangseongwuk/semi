@@ -19,12 +19,15 @@ a, a:hover {
 	<script src="js/bootstrap.js"></script>
 </head>
 <body>
+<% 
+String id = (String)session.getAttribute("id"); 
+%>
 	<h2 align="center">글쓰기</h2>
 <form action="boardwritePro.jsp" method="post">
 	<table class="table table-striped" align="center" style="width:60%" >
 		<tr height="40" align="center">
 			<td width="300">작성자</td>
-			<td width="600"><input type="text" class="form-control" name="writer" size="77" placeholder="홍길동"/></td>
+			<td width="600"><input type="hidden" class="form-control" name="writer" size="77" placeholder="<%=id %>" value="<%=id %>" readonly/><%=id %></td>
 		</tr>
 		<tr height="40" align="center">
 			<td width="200">주제</td>

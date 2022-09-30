@@ -44,7 +44,7 @@
 </style>
 </head>
 <body>
-<div>
+<div style="width:150vh">
 
 <%
       request.setCharacterEncoding("UTF-8");   
@@ -59,8 +59,8 @@
 		movieBean bean = vec2.get(i);
 		
 %>
-	    				
-        <div style="width:310px;display:inline-block;margin:1%;">
+	    			
+        <div style="width:310px;display:inline-block;">
         <a href="main.jsp?center=movieDetail.jsp?mno=<%=bean.getMno()%>"><img class="poster"src="<%=bean.getPoster() %>" width="300px" height="400px"></a>
 	</div>
 	

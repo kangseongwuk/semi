@@ -158,7 +158,7 @@ button {
 		<label for="password">패스워드</label> <input type="password" placeholder="Password" name="pw">
 
 		<button>Log In</button>
-		<button style="width:100px;margin-left:53%;margin-top:30%;" onclick="location.href='main.jsp?center=join.jsp'">회원가입</button>
 	</form>
+		<button style="width:100px;margin-left:53%;margin-top:30%;z-index: 1" onclick="location.href='join.jsp'">회원가입</button>
 </body>
 </html>

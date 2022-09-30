@@ -9,20 +9,23 @@
 <title>게시판 댓글 쓰기(저장)</title>
 </head>
 <body>
-<jsp:useBean id="rbean" class="movie.rewordBean">
-		<jsp:setProperty name="rbean" property="*"/></jsp:useBean>
-	
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
 	String mno = request.getParameter("mno");
 	String writing = request.getParameter("writing");
 	double grade = Integer.parseInt(request.getParameter("grade"));
+	int numnum = Integer.parseInt(request.getParameter("numnum"));
+%>	
 	
+	<jsp:useBean id="rBean" class="movie.rewordBean">
+		<jsp:setProperty name="rBean" property="*"/></jsp:useBean>
+	
+<% 
+
 	rewordDAO rdao = new rewordDAO();
-	rdao.rewordUpdate(rbean);
+	rdao.rewordUpdate(rBean);
 	
-	//response.sendRedirect("main.jsp?center=movieDetail.jsp?mno="+request.getParameter("mno"));
 	response.sendRedirect("main.jsp?center=movieDetail.jsp?mno="+request.getParameter("mno"));
 %>		
 </body>

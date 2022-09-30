@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* body CSS태그 */ 
 body, html {
-  height: 100vh;
+/*   height: 100vh; */
   width:100%;
   background: black;
 } 
@@ -10,8 +10,8 @@ body, html {
 	font-weight: 300;
 	font-family: 'Inter', sans-serif;
 	color:white;
-	width:200vh;
-	height:100vh;
+	/* width:200vh; */
+/* 	height:100vh; */
 	display: inline-block;
    }
    div.box {
@@ -25,7 +25,7 @@ body, html {
   top: 0;
   left: 0;
   right: 0;
-  
+  z-index: 99;
   height: 75px;
   padding: 1rem;
   color: white;
@@ -127,7 +127,7 @@ a:focus {
   background: #262933;
   color: #fff;
   transition: all 0.4s;
-	height:100vh;
+	height:93.5vh;
 }
 
 #sidebar.active {
@@ -218,5 +218,8 @@ div.wrap {
 
   #sidebarCollapse span {
     display: none;
+  }
+  .center.active{
+  	width:200vh;
   }
 }

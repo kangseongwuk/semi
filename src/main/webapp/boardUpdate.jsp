@@ -34,6 +34,10 @@ a, a:hover {
 					<td width="100">번호</td>
 					<td width="150"><%=bBean.getb_no() %></td>
 				</tr>
+				<tr>
+					<td width="100">제목</td>
+					<td><input type="text" name="subject" value="<%=bBean.getSubject() %>" size="50"></td>
+				</tr>
 				<tr style="height: 50px;">
 					<td width="100">작성자</td>
 					<td><%=bBean.getWriter() %></td>
@@ -58,7 +62,5 @@ a, a:hover {
 		</form>
 	</div>
 
-</body>
-</html>
 </body>
 </html>

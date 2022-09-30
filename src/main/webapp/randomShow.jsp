@@ -92,7 +92,7 @@ table {
 
       <div style="width:910px;display:inline-block;margin-left:20%;">
         <a href="main.jsp?center=movieDetail.jsp?mno=<%=mBean3.getMno()%>"><img class="poster"src="<%=mBean3.getPoster() %>" style="width:500px; height:700px;"></a>
-	<h1>저희가 추천하는 <span style="color:yellow;"><%=mBean3.getGenre()%></span>&nbsp;영화입니다! 한번 보세요!</h1>
+	<h1><span style="color:yellow;"><%=mBean3.getGenre()%></span>&nbsp; 추천영화 영화 <span style="color:yellow;"><%=mBean3.getTitle()%></span>&nbsp;</h1>
 	</div>
 <%}%>
 

@@ -1,6 +1,7 @@
 package movie;
 
 public class rewordBean {
+	private int numnum;
 	private String mno;
 	private String id;
 	private String title;
@@ -10,6 +11,14 @@ public class rewordBean {
 	private String tableid;
 
 	
+	public int getNumnum() {
+		return numnum;
+	}
+
+	public void setNumnum(int numnum) {
+		this.numnum = numnum;
+	}
+
 	public String getTableid() {
 		return tableid;
 	}

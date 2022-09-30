@@ -38,12 +38,20 @@ function loginC() {
   <title>1'M MOVIE</title>
 
 <style>
+
 .center{
-margin-left: 2%;
-margin-top: 7%;
-width:150vh;
-text-align:center;
+	margin-left: 2%;
+	margin-top: 7%;
+   	width:170vh;
+	text-align:center;
+	overflow:scroll;
+	overflow-x: hidden;
+	height:85vh;
+	-ms-overflow-style: none;
 }
+ .center::-webkit-scrollbar{
+	  display:none;
+	}
 .dropdown {
   position: relative;
   display: inline-block;
@@ -54,7 +62,7 @@ text-align:center;
   background-color: #f1f1f1;
   min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
   right:4%;
 }
 .dropdown-content a {
@@ -72,54 +80,20 @@ text-align:center;
 .dropdown:hover .dropbtn {
   /* background-color: #2b9e31; */
 }
+
 </style>
 </head>
 <body>
+
    <!-- session을 이용한 로그인 처리 -->
    <%
    String id = (String) session.getAttribute("id");
    String center = request.getParameter("center");
 
       %>   
- <!-- 서브메뉴   2022.09.28 수정-->   
       
-      <div style="display:inline-flex;">
-       <nav id="sidebar" style="color: white">
-       <div className="sidebar-skeleton"></div>
-       
-         <div class="sidebar-header">
-         <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
-         </div>
-         <ul class="lisst-unstyled components">
-           <li><a href="main.jsp?center=random.jsp">추천</a></li>
-           <li class="active" >
-             <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장르별</a>
-             <ul class="collapse lisst-unstyled" id="foodSubmenu" >
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=코미디">코미디</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=멜로">멜로</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=액션">액션</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=호러">호러</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=스릴러">스릴러</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=드라마">드라마</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=스포츠">스포츠</a></li>
-               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=SF">SF</a></li>
-               
-             </ul>
-           </li>
-           <li>
-             <a href="main.jsp?center=like.jsp">찜목록</a>
-           </li>
-           <li>
-             <a href="main.jsp?center=boardList.jsp">고객센터</a>
-           </li>
-           <li>
-             <a href="main.jsp?center=test.jsp">테스트</a>
-           </li>
-         </ul>
-       </nav>
-    
-   <header class="header">
-      <nav class="navbar navbar-expand-lg">
+         <header class="header">
+      <nav class="navbar navbar-expand-lg" onclick="loginC()">
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="btn btn-dark">
             <i class="fas fa-bars"></i><span> MENU</span>
@@ -130,7 +104,7 @@ text-align:center;
           <!-- 검색바   2022.09.28 수정-->  
    
    
-         <div class="container">
+         <div class="container" onclick="loginC()">
 	
     <form  name="title" action="searchPro.jsp"   >
                     <!--  <div class="row height d-flex justify-content-center align-items-center"> -->
@@ -152,7 +126,7 @@ text-align:center;
                 </div>
 
       <nav>
-         <div align="right">
+         <div align="right" style="position: relative; z-index: 100;">
         <%
          if(id==null){
             id = "GUEST";
@@ -170,7 +144,7 @@ text-align:center;
  			<h4 style="color:#40c749;margin-right:15%;margin-top:5%;margin-bottom:1%;"><strong>관리자</strong></h4> 
               <div class="dropdown">
              <button class="btn btn-dark dropbtn" style="padding-bottom: 1%;"><i class="fas fa-bars"></i><span>페이지 관리</span></button>
-                   <div class="dropdown-content">
+                   <div class="dropdown-content" style="text-align: center">
                         <a href="main.jsp?center=peopleList.jsp">회원목록</a> 
                         <a href="movieJoin.jsp">영화추가</a>
                        <a href="#" onclick="return Logout_form()">로그아웃</a>
@@ -185,9 +159,9 @@ text-align:center;
 	          	<h4 style="color:#40c749;margin-right:15%;margin-top:5%;"><strong><%=id %></strong></h4> 
 	           <div class="dropdown">
 		    	<button class="btn btn-dark dropbtn" style="padding-bottom: 1%;"><i class="fas fa-bars"></i><span>MY PAGE</span></button>
-				   	 <div class="dropdown-content">
-				     	    <a href="main.jsp?center=mypageDetail.jsp?id=<%=id%>">회원목록</a> 
+				   	 <div class="dropdown-content" style="text-align: center">
 				     	    <a href="#"></a>
+				     	    <a href="main.jsp?center=mypageDetail.jsp?id=<%=id%>">회원목록</a> 
 				    	    <a href="#" onclick="return Logout_form()">로그아웃</a>
 				   	</div>
 			  	</div>
@@ -201,7 +175,44 @@ text-align:center;
       </nav>
       </header>
       
-      <section class="center">
+      
+      
+ <!-- 서브메뉴   2022.09.28 수정-->   
+      
+      <div style="display:inline-flex;">
+       <nav id="sidebar" style="color: white" onclick="loginC()">
+       <div className="sidebar-skeleton"></div>
+       
+         <div class="sidebar-header">
+         <a href="main.jsp"><img src="./images/mmovie2.png"  width="200" height="100vh"/></a><br>
+         </div>
+         <ul class="lisst-unstyled components">
+           <li><a href="main.jsp?center=random.jsp">추천</a></li>
+           <li class="active" >
+             <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장르별</a>
+             <ul class="collapse lisst-unstyled" id="foodSubmenu" >
+			   <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=드라마">드라마</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=멜로">멜로</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=코미디">코미디</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=공포">공포</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=액션">액션</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=SF">SF</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=뮤지컬">뮤지컬</a></li>
+               <li><a href="main.jsp?center=movieGenreDetail.jsp?genre=애니메이션">애니메이션</a></li>
+               
+             </ul>
+           </li>
+           <li>
+             <a href="main.jsp?center=like.jsp">찜목록</a>
+           </li>
+           <li>
+             <a href="main.jsp?center=boardList.jsp">문의게시판</a>
+           </li>
+
+         </ul>
+       </nav>
+
+      <div class="center" onclick="loginC()">
 				<%
 					
 				
@@ -214,7 +225,7 @@ text-align:center;
  				<div class="wrap" onclick="loginC()">
 				</div>
 	      </div> -->
-     </section>
+     </div>
      
      </div>
 <script type="text/javascript"

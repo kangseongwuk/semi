@@ -61,17 +61,18 @@ String id = (String) session.getAttribute("id");
 		
 		<tr style="height: 40; ">
 			<td colspan="4">
-			<%
-			 if(id.equals("admin")){
-            %>
-				<button onclick="location.href='main.jsp?center=boardRewrite.jsp?b_no=<%=bBean.getb_no()%>&ref=<%=bBean.getRef() %>&re_step=<%=bBean.getRe_step()%>&re_level=<%=bBean.getRe_level()%>'" class="btn btn-light">답변</button>&nbsp;&nbsp;
+			
+			 <%
+				   		if (id.equals("admin")){
+				   	%>		
+							<button onclick="location.href='main.jsp?center=boardRewrite.jsp?b_no=<%=bBean.getb_no()%>&ref=<%=bBean.getRef() %>&re_step=<%=bBean.getRe_step()%>&re_level=<%=bBean.getRe_level()%>'" class="btn btn-light">답변</button>&nbsp;&nbsp;
+							<button onclick="location.href='main.jsp?center=boardUpdate.jsp?b_no=<%=bBean.getb_no() %>'" class="btn btn-light">수정하기</button>&nbsp;&nbsp;
+								<button onclick="location.href='main.jsp?center=boardDelete.jsp?b_no=<%=bBean.getb_no() %>'" class="btn btn-light">삭제하기</button>&nbsp;&nbsp;
+				   <% 	} else if(id.equals(bBean.getWriter())){
+					%>  		<button onclick="location.href='main.jsp?center=boardUpdate.jsp?b_no=<%=bBean.getb_no() %>'" class="btn btn-light">수정하기</button>&nbsp;&nbsp;
+								<button onclick="location.href='main.jsp?center=boardDelete.jsp?b_no=<%=bBean.getb_no() %>'" class="btn btn-light">삭제하기</button>&nbsp;&nbsp;
+					<%}%>
 
-         <%}%>
-			
-			
-			
-				<button onclick="location.href='main.jsp?center=boardUpdate.jsp?b_no=<%=bBean.getb_no() %>'" class="btn btn-light">수정하기</button>&nbsp;&nbsp;
-				<button onclick="location.href='main.jsp?center=boardDelete.jsp?b_no=<%=bBean.getb_no() %>'" class="btn btn-light">삭제하기</button>&nbsp;&nbsp;
 				<button onclick="location.href='main.jsp?center=boardList.jsp'" class="btn btn-light">목록조회</button>&nbsp;&nbsp;
 				<button onclick="location.href='main.jsp?center=boardwrite.jsp'" class="btn btn-light">글쓰기</button>
 			</td>

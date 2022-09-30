@@ -126,7 +126,7 @@ input {
 	border-radius: 3px;
 	padding: 0 10px;
 	margin-top: 8px;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 300;
 }
 
@@ -228,7 +228,7 @@ document.querySelector('.mainJoinForm').addEventListener('click', function(e){
 		<table align="center" id=table>
 			<tr>
 				<td>
-					<input type="checkbox" value="코믹" name="genre" class="genre"/><span style="vertical-align:+3px">  코믹</span>&nbsp;&nbsp;
+					<input type="checkbox" value="코미디" name="genre" class="genre"/><span style="vertical-align:+3px; font-size: 12px">  코미디</span>&nbsp;&nbsp;
 				</td>
 				<td>
 					<input type="checkbox" value="멜로" name="genre" class="genre"/><span style="vertical-align:+3px">  멜로</span>&nbsp;&nbsp;
@@ -237,18 +237,18 @@ document.querySelector('.mainJoinForm').addEventListener('click', function(e){
 					<input type="checkbox" value="액션" name="genre" class="genre"/><span style="vertical-align:+3px">  액션</span>&nbsp;&nbsp;
 				</td>
 				<td>
-					<input type="checkbox" value="호러" name="genre" class="genre"/><span style="vertical-align:+3px">  호러</span><br>
+					<input type="checkbox" value="공포" name="genre" class="genre"/><span style="vertical-align:+3px">  공포</span><br>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="checkbox" value="스릴러" name="genre" class="genre"/><span style="vertical-align:+3px">  스릴러</span>&nbsp;&nbsp;
+					<input type="checkbox" value="뮤지컬" name="genre" class="genre"/><span style="vertical-align:+3px; ">  뮤지컬</span>&nbsp;&nbsp;
 				</td>
 				<td>
 					<input type="checkbox" value="드라마" name="genre" class="genre"/><span style="vertical-align:+3px">  드라마</span>&nbsp;&nbsp;
 				</td>
 				<td>
-					<input type="checkbox" value="스포츠" name="genre" class="genre"/><span style="vertical-align:+3px">  스포츠</span>&nbsp;&nbsp;
+					<input type="checkbox" value="애니메이션" name="genre" class="genre"/><span style="vertical-align:+3px">  애니메이션</span>&nbsp;&nbsp;
 				</td>
 				<td>
 					<input type="checkbox" value="SF" name="genre" class="genre"/><span style="vertical-align:+3px">  SF</span>&nbsp;&nbsp;

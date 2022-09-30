@@ -64,12 +64,12 @@ public class rewordDAO {
 	
 	public Vector<rewordBean> rewordSelectEach(String mno) {
 		
-		Vector<rewordBean> rvector = new Vector<>();
+		Vector<rewordBean> rVector = new Vector<>();
 		
 		try {
 			getConnection();
 			
-			String sql = "select id, grade, writing from reword  where mno = ?";
+			String sql = "select distinct id, grade, writing from reword  where mno = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mno);
@@ -77,13 +77,13 @@ public class rewordDAO {
 
 			while (rs.next()) {
 				
-				rewordBean rBean3 = new rewordBean();
+				rewordBean rBean = new rewordBean();
 
-				rBean3.setId(rs.getString(1));
-				rBean3.setGrade(rs.getDouble(2));
-				rBean3.setWriting(rs.getString(3));
+				rBean.setId(rs.getString(1));
+				rBean.setGrade(rs.getDouble(2));
+				rBean.setWriting(rs.getString(3));
 
-				rvector.add(rBean3);
+				rVector.add(rBean);
 			}
 			if (conn != null) {
 				conn.commit();
@@ -92,29 +92,47 @@ public class rewordDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rvector;
+		return rVector;
 	}
 	
 	/* 댓글 삽입 */
-	public void rewordinsert(rewordBean rBean) {
+	public void rewordinsert(String id,String mno,String title, double grade,String writing) {
 		
 		try {
 				getConnection();
 				
-			String sql = "insert into reword values(?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO reword (numnum, id, mno, title, grade, writing)\r\n"
+					+ "SELECT (SELECT NVL(MAX(numnum),0)+1 FROM reword)\r\n"
+					+ ", ?\r\n"
+					+ ", ?\r\n"
+					+ ", ?\r\n"
+					+ ", ?\r\n"
+					+ ", ?  \r\n"
+					+ "  FROM reword\r\n"
+					+ " WHERE NOT EXISTS (SELECT id\r\n"
+					+ "                     FROM reword\r\n"
+					+ "                     where id = ?\r\n"
+					+ "                      and mno = ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, rBean.getMno());
-			pstmt.setString(2, rBean.getId());
-			pstmt.setString(3, rBean.getTitle());
-			pstmt.setDouble(4, rBean.getGrade());
-			pstmt.setString(5, rBean.getWriting());
+			pstmt.setString(1, id);
+			pstmt.setString(2, mno);
+			pstmt.setString(3, title);
+			pstmt.setDouble(4, grade);
+			pstmt.setString(5, writing);
+			pstmt.setString(6, id);
+			pstmt.setString(7, mno);
+			/*
+			 * pstmt.setString(1, rBean.getId()); pstmt.setString(2, rBean.getMno());
+			 * pstmt.setString(3, rBean.getTitle()); pstmt.setDouble(4, rBean.getGrade());
+			 * pstmt.setString(5, rBean.getWriting()); pstmt.setString(6, rBean.getId());
+			 * pstmt.setString(7, rBean.getMno());
+			 */
 			
 			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("아이디가 중복");
 		}
 	}
 	
@@ -123,7 +141,7 @@ public class rewordDAO {
 
 		getConnection();
 
-		Vector<rewordBean> rvec = new Vector<>();
+		Vector<rewordBean> rVec = new Vector<>();
 
 		try {
 			String sql = "select * from reword";
@@ -133,15 +151,16 @@ public class rewordDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				rewordBean rbean = new rewordBean();
+				rewordBean rBean = new rewordBean();
 
-				rbean.setMno(rs.getString(1));
-				rbean.setId(rs.getString(2));
-				rbean.setTitle(rs.getString(3));
-				rbean.setGrade(rs.getInt(4));
-				rbean.setWriting(rs.getString(5));
+				rBean.setNumnum(rs.getInt(1));
+				rBean.setId(rs.getString(2));
+				rBean.setMno(rs.getString(3));
+				rBean.setTitle(rs.getString(4));
+				rBean.setGrade(rs.getInt(5));
+				rBean.setWriting(rs.getString(6));
 
-				rvec.add(rbean);
+				rVec.add(rBean);
 			}
 			if (conn != null) {
 				conn.commit();
@@ -150,31 +169,32 @@ public class rewordDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rvec;
+		return rVec;
 	}
 
 	
 
 	// 수정용 반환 댓글 메소드 호출
-	public rewordBean OneSelectreword(String id) {
+	public rewordBean OneSelectreword(int numnum) {
 
-		rewordBean rbean = new rewordBean();
+		rewordBean rBean = new rewordBean();
 
 		try {
 			getConnection();
 
-			String sql = "select * from reword where id = ?";
+			String sql = "select * from reword where numnum = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, numnum);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-
-				rbean.setMno(rs.getString(1));
-				rbean.setId(rs.getString(2));
-				rbean.setTitle(rs.getString(3));
-				rbean.setGrade(rs.getInt(4));
-				rbean.setWriting(rs.getString(5));
+				
+				rBean.setNumnum(rs.getInt(1));
+				rBean.setId(rs.getString(2));
+				rBean.setMno(rs.getString(3));
+				rBean.setTitle(rs.getString(4));
+				rBean.setGrade(rs.getInt(5));
+				rBean.setWriting(rs.getString(6));
 
 			}
 			if (conn != null) {
@@ -184,25 +204,26 @@ public class rewordDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rbean;
+		return rBean;
 	}
 
 
 
 	//
-	public void rewordUpdate(rewordBean rbean) {
+	public void rewordUpdate(rewordBean rBean) {
 
+		
 		try {
 			getConnection();
-
-			String sql = "update reword set grade = ?, writing = ? where mno = ? and id = ?";
+			
+			
+			String sql = "update reword set grade = ?, writing = ? where numnum = ?";
 
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setDouble(1, rbean.getGrade());
-			pstmt.setString(2, rbean.getWriting());
-			pstmt.setString(3, rbean.getMno());
-			pstmt.setString(4, rbean.getId());
+			pstmt.setDouble(1, rBean.getGrade());
+			pstmt.setString(2, rBean.getWriting());
+			pstmt.setInt(3, rBean.getNumnum());
 
 			pstmt.executeUpdate();
 
@@ -218,16 +239,15 @@ public class rewordDAO {
 	}
 
 	// 삭제 메소드 호출
-	public void reworddelete(String id, String title) {
+	public void reworddelete(int numnum) {
 
 		try {
 			getConnection();
 
-			String sql = "delete from reword where id = ? and title = ?";
+			String sql = "delete from reword where numnum = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, title);
+			pstmt.setInt(1, numnum);
 			pstmt.executeUpdate();
 
 			if (conn != null) {
@@ -247,7 +267,7 @@ public class rewordDAO {
 		// Mno에 해당하는 id 호출 메소드
 		public rewordBean findId(String mno) {
 			
-			rewordBean rbean = new rewordBean();
+			rewordBean rBean = new rewordBean();
 			
 			try {
 				getConnection();
@@ -258,8 +278,7 @@ public class rewordDAO {
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					
-					rbean.setId(rs.getString(1));
-					System.out.println(rs.getString(1));
+					rBean.setId(rs.getString(1));
 					
 				}
 				if (conn != null) {
@@ -269,6 +288,34 @@ public class rewordDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return rbean;
+			return rBean;
+		}
+		
+		
+		public rewordBean findnumnum(String mno, String id) {
+			
+			rewordBean rBean = new rewordBean();
+			
+			try {
+				getConnection();
+				
+				String sql = "select numnum from reword where mno = ? and id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mno);
+				pstmt.setString(2, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					
+					rBean.setNumnum(rs.getInt(1));
+					
+				}
+				if (conn != null) {
+					conn.commit();
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rBean;
 		}
 }
