@@ -179,11 +179,22 @@ insert into reword values('1','23138','admin','죽어도 좋은 경험','7.5','�
 insert into reword values('1','23138', 'admin', '죽어도 좋은 경험', 5,'재미있어요');	
 
 --------------------------------------------------------------------------------
+--찜하기 테이블 생성
 create table movieLike(
 num number not null primary key,
 ID varchar2(7) not null,
 MNO varchar2(100)not null
    );
+   
+drop table movieLike;   
+
+--num 컬럼 시퀀스 생성
+create sequence movieLike_num
+   start with 2
+   increment by 1
+   minvalue 1
+   maxvalue 1000
+   cycle;
 
 
 insert into movieLike values(movieLike_num.nextval,'admin','12'); 
