@@ -165,64 +165,43 @@ DROP TABLE movie CASCADE CONSTRAINTS;
 
 --table reword
   create table reword(
-    ID   varchar2(50) primary key not null,
+    numnum number not null ,
+    ID varchar2(50)  not null,
     mno varchar2(7)  not null,
     title varchar2(500) not null, 
     grade number(2,1) not null,
     writing varchar2(1000) not null
 );
 
+
 drop table reword;
 
 	select * from reword;
-insert into reword values('1','23138','admin','죽어도 좋은 경험','7.5','재미있어요');
-insert into reword values('1','23138', 'admin', '죽어도 좋은 경험', 5,'재미있어요');	
+insert into reword values(1,'admin', '1', '브로커', 5,'재미있어요');--이거하나만 넣기
 
 --------------------------------------------------------------------------------
---찜하기 테이블 생성
 create table movieLike(
-num number not null primary key,
 ID varchar2(7) not null,
 MNO varchar2(100)not null
    );
-   
-drop table movieLike;   
-
---num 컬럼 시퀀스 생성
-create sequence movieLike_num
-   start with 2
-   increment by 1
-   minvalue 1
-   maxvalue 1000
-   cycle;
 
 
-insert into movieLike values(movieLike_num.nextval,'admin','12'); 
-insert into movieLike values(movieLike_num.nextval,'admin','27');
-insert into movieLike values(movieLike_num.nextval,'admin','3');
-insert into movieLike values(movieLike_num.nextval,'admin','45');
-insert into movieLike values(movieLike_num.nextval,'qqqq','34');
-insert into movieLike values(movieLike_num.nextval,'abc123','22');
-insert into movieLike values(movieLike_num.nextval,'qwer1234','54');
+insert into movieLike values('admin','12'); 
+insert into movieLike values('admin','27');
+insert into movieLike values('admin','3');
+insert into movieLike values('admin','45');
+
 
 
 -------------------------------------------------------------------------------
 
--- reword -> (title & movie mno) foreign key 연결
-ALTER TABLE reword
-ADD CONSTRAINT fk_title FOREIGN KEY (mno) REFERENCES movie(mno) ON DELETE Cascade;
-
--- reword -> (ID & movie mno) foreign key 연결
-ALTER TABLE reword
-ADD CONSTRAINT fk_ID FOREIGN KEY (ID) REFERENCES movie(mno) ON DELETE Cascade;
-
 -- movieLike -> (mno & movie mno) foreign key 연결
 alter table movieLike
-add constraint fk_mno foreign key (mno) references movie(mno);   
+add constraint fk_mno foreign key (mno) references movie(mno) ON DELETE Cascade;   
 
 -- movieLike -> (id & people id) foreign key 연결
 alter table movieLike
-add constraint fk_id foreign key (id) references people(id);
+add constraint fk_id foreign key (id) references people(id) ON DELETE Cascade;
 
 --제약 조건 확인
 select * from user_constraints;
