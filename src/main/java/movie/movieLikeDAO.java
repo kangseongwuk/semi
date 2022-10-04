@@ -81,7 +81,7 @@ public void insertmovieLike(String id, String mno) {
       
       getConnection();
       
-      String sql = "insert into movieLike values(movieLike_num.nextval,?,?)";
+      String sql = "insert into movieLike values(?,?)";
       
       pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, id);
