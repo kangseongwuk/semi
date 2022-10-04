@@ -6,7 +6,7 @@ create table people(
     NAME   varchar2(15) not null,
     GENDER   varchar2(6) not null,
     AGE   number(3) not null,
-    GENRE   varchar2(50) not null
+    GENRE   varchar2(500) not null
 );
 
 drop table people;
@@ -30,7 +30,7 @@ create table board(
    B_NO   number primary key not null,
    WRITER   varchar2(50) not null,
    SUBJECT   varchar2(300) not null,
-   password varchar(15) not null,
+   password varchar(50) not null,
    REG_DATE   date, 
    REF   number, 
    RE_STEP   number, 
@@ -164,8 +164,8 @@ DROP TABLE movie CASCADE CONSTRAINTS;
 ---------------------------------------------------------------------------------
 
 --table reword
-  create table reword(
-    numnum number not null ,
+create table reword(
+     numnum number not null ,
     ID varchar2(50)  not null,
     mno varchar2(7)  not null,
     title varchar2(500) not null, 
@@ -173,52 +173,53 @@ DROP TABLE movie CASCADE CONSTRAINTS;
     writing varchar2(1000) not null
 );
 
+drop table reword;--------하지마
 
-drop table reword;
-
-	select * from reword;
-insert into reword values(1,'admin', '1', '브로커', 5,'재미있어요');--이거하나만 넣기
+   select * from reword;
+   
+   
+insert into reword values(1,'admin', '23138', '죽어도 좋은 경험', 5,'재미있어요');--이거하나만 넣기   
+insert into reword values((SELECT NVL(MAX(numnum),0)+1 FROM reword),'aaa', '23138', '죽어도 좋은 경험', 5,'재미있어요');
+ 
+                         
+INSERT INTO reword
+SELECT (SELECT NVL(MAX(numnum),0)+1 FROM reword)
+    , 'fff'
+     , '23138'
+     , '죽어도 좋은 경험'
+     , 4
+     , '나가'
+     
+  FROM reword
+ WHERE NOT EXISTS (SELECT id
+                     FROM reword
+                     where id = 'fff'
+                      and mno = '23138');                         
+                    
+select * from reword; 
 
 --------------------------------------------------------------------------------
 create table movieLike(
-ID varchar2(7) not null,
-MNO varchar2(100)not null
+ID varchar2(50) not null,
+MNO varchar2(7)not null
    );
 
-
-insert into movieLike values('admin','12'); 
-insert into movieLike values('admin','27');
-insert into movieLike values('admin','3');
-insert into movieLike values('admin','45');
-
-
-
+drop table movieLike;
+ 
 -------------------------------------------------------------------------------
 
 -- movieLike -> (mno & movie mno) foreign key 연결
 alter table movieLike
-add constraint fk_mno foreign key (mno) references movie(mno) ON DELETE Cascade;   
+add constraint fk_mno foreign key (mno) references movie(mno);   
 
 -- movieLike -> (id & people id) foreign key 연결
 alter table movieLike
-add constraint fk_id foreign key (id) references people(id) ON DELETE Cascade;
+add constraint fk_id foreign key (id) references people(id);
 
 --제약 조건 확인
 select * from user_constraints;
 
---테이블에 외래키 제약조건을 비활성화
-alter table reword
-disable constraint fk_mno;
 
---테이블에 외래키 제약조건을 활성화
-alter table reword
-enable constraint fk_mno;
-
---테이블 모든 데이터 삭제
-truncate table reword;
-
---테이블에 외래키 제약조건 삭제
-alter table reword
-drop constraint fk_mno cascade;
-
+--오류났을 때 drop순서
+people, movie 가장 마지막에
 commit;
